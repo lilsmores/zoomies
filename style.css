@@ -30,12 +30,6 @@ a:hover { text-decoration:underline; }
   margin-right: 8px;
 }
 
-.text {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #ff69b4;     /* pink brand text */
-}
-
 .brand-name {
   font-size: 1.6rem;
   font-weight: 700;

@@ -1,18 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stompy the Ostrich | Zoomies</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Stompy the Ostrich</title><link rel="stylesheet" href="style.css"></head><body>
-<header><h1>Stompy the Ostrich 🐦</h1><nav><a href="ambassadors.html">Back to Ambassadors</a></nav></header>
-<main>
-<section class="card">
-<h2>Status: Feeling hungry 🥕</h2>
-<img src="https://placekitten.com/800/300" alt="Stompy image" style="max-width:100%;border-radius:6px;">
-<p>Bio: Stompy was rescued from an abandoned petting zoo. Now an ambassador for ostrich conservation!</p>
-</section>
-<section class="card">
-<h3>Donate to Stompy</h3>
-<button class="btn">Donate</button>
-</section>
-<section class="card">
-<h3>Wall</h3>
-<p>No comments yet. Be the first to cheer Stompy!</p>
-</section>
-</main><footer>&copy; 2025 Zoomies</footer></body></html>
+  <!-- Header (reuse from site) -->
+  <header class="site-header">
+    <div class="logo-wrap">
+      <img src="Logo.png" alt="Zoomies logo" class="logo" />
+      <span class="brand-name">Zoomies</span>
+    </div>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="ambassadors.html">Animals</a>
+      <a href="community.html">Community</a>
+      <a href="about.html">About</a>
+      <a href="#" class="login-link">Login</a>
+    </nav>
+  </header>
+
+  <!-- Cover section -->
+  <section class="cover">
+    <div class="cover-img"></div>
+    <h2 class="sanctuary-name">Alveus Sanctuary</h2>
+    <h1 class="animal-name">Stompy the Ostrich</h1>
+    <div class="profile-actions">
+      <button class="btn btn-outline">💗 Follow</button>
+      <button class="btn btn-outline">🎁 Donate</button>
+    </div>
+  </section>
+
+  <!-- Nav tabs -->
+  <nav class="profile-tabs">
+    <a class="active" href="#">Timeline</a>
+    <a href="#">About</a>
+    <a href="#">Friends</a>
+    <a href="#">Photos</a>
+    <a href="#">More</a>
+  </nav>
+
+  <main class="profile-layout">
+    <!-- Left Column -->
+    <aside class="sidebar">
+      <div class="about-card card">
+        <h3>About</h3>
+        <p>
+          Hi, I’m Stompy! I was rescued from an abandoned petting zoo.<br />
+          My favorite food? Shiny insects 🐞✨
+        </p>
+        <a href="#" class="more-info">More Info</a>
+      </div>
+
+      <div class="donate-card card">
+        <button class="btn btn-primary full">Support Stompy</button>
+        <p class="raised">$815 raised / $2,000 goal</p>
+        <div class="progress"><span style="width: 40%"></span></div>
+      </div>
+
+      <div class="gallery-card card">
+        <h4>Photo Gallery 💜</h4>
+        <div class="gallery-row">
+          <img src="https://placekitten.com/80/80" alt="">
+          <img src="https://placekitten.com/81/80" alt="">
+          <img src="https://placekitten.com/82/80" alt="">
+        </div>
+      </div>
+
+      <div class="comments-card card">
+        <h4>Comments 💬</h4>
+        <div class="comment"><strong>Clara:</strong> Stunned by Stompy’s beauty! 💗</div>
+        <div class="comment"><strong>James:</strong> 🤘🦩💜</div>
+        <input type="text" placeholder="Add a comment…" />
+      </div>
+    </aside>
+
+    <!-- Right Column -->
+    <section class="timeline">
+      <div class="status-banner">😊 Stompy is feeling: <strong>Silly</strong></div>
+
+      <article class="update card">
+        <h3>🎥 Video · 3 hours ago</h3>
+        <div class="media-placeholder"></div>
+      </article>
+
+      <article class="update card">
+        <h3>💝 Status · 6 hours ago</h3>
+        <p>Thank you to <em>Name</em> for the $25 treat donation! I just had a big bowl of insects.</p>
+      </article>
+
+      <article class="update card">
+        <h3>📸 Photo · 10 hours ago</h3>
+        <div class="media-placeholder"></div>
+      </article>
+    </section>
+  </main>
+
+  <footer>&copy; 2025 Zoomies – Built with paws &amp; purpose</footer>
+</body>
+</html>

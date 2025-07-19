@@ -69,7 +69,8 @@
       padding: 0.75rem 0;
       border-bottom: 2px solid transparent;
     }
-    .tabs a:hover {
+    .tabs a:hover,
+    .tabs a:focus {
       color: #ff69b4;
       border-bottom: 2px solid #ff69b4;
     }
@@ -79,25 +80,54 @@
       gap: 2rem;
       padding: 2rem;
     }
-    .card {
+    .card, .gallery, .status, .comments {
       background-color: #111;
       padding: 1.5rem;
       border-radius: 12px;
       border: 1px solid #333;
+      margin-bottom: 1.5rem;
     }
-    .card h2 {
-      margin-top: 0;
+    .card h2,
+    .gallery h2,
+    .status h2,
+    .comments h2 {
       font-size: 1.2rem;
       margin-bottom: 0.75rem;
     }
     .post {
-      margin-bottom: 1.5rem;
       background-color: #1a1a1a;
       padding: 1rem;
       border-radius: 10px;
+      margin-bottom: 1rem;
     }
     .post p {
       margin: 0.5rem 0;
+    }
+    .progress {
+      background-color: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 10px;
+      margin-top: 0.5rem;
+    }
+    .progress-bar {
+      background-color: #ff69b4;
+      height: 100%;
+      width: 40%;
+    }
+    .gallery img {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      object-fit: cover;
+      margin-right: 0.5rem;
+    }
+    .status-box {
+      background-color: #222;
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-style: italic;
+      color: #ff69b4;
     }
   </style>
 </head>
@@ -120,31 +150,69 @@
 
   <section class="profile-info">
     <h1>Stompy</h1>
-    <p>Ambassador Goat • Loves headbutts and snacks</p>
+    <p>Ambassador Goat from Alveus Sanctuary • Loves headbutts and snacks</p>
   </section>
 
   <div class="tabs">
-    <a href="#">Story</a>
+    <a href="#">Timeline</a>
+    <a href="#">About</a>
+    <a href="#">Friends</a>
     <a href="#">Photos</a>
-    <a href="#">Campaigns</a>
-    <a href="#">Updates</a>
+    <a href="#">More</a>
   </div>
 
   <div class="content">
-    <div class="card">
-      <h2>About Stompy</h2>
-      <p>Stompy is one of our most spirited goats, known for his curiosity and love of mischief. Rescued in 2023, he's become a fan favorite at Zoomies Sanctuary.</p>
-      <p><strong>Joined:</strong> August 2023</p>
+    <div>
+      <div class="card">
+        <h2>About Stompy</h2>
+        <p>Hi I’m Stompy and I’m an ostrich blah blah I was found in blah blah blah. My favorite food is blah blaha bkasbajasdafsdgdgsdgsh.</p>
+        <p><strong>Joined:</strong> August 2023</p>
+      </div>
+
+      <div class="card">
+        <h2>Support Stompy</h2>
+        <p>$815 raised of $2,000 goal</p>
+        <div class="progress">
+          <div class="progress-bar"></div>
+        </div>
+      </div>
+
+      <div class="gallery">
+        <h2>Photo Gallery ♥</h2>
+        <div style="display: flex;">
+          <img src="https://placehold.co/48x48?text=1" alt="Stompy 1" />
+          <img src="https://placehold.co/48x48?text=2" alt="Stompy 2" />
+          <img src="https://placehold.co/48x48?text=3" alt="Stompy 3" />
+        </div>
+      </div>
+
+      <div class="comments">
+        <h2>Comments ✧</h2>
+        <p><strong>Clara:</strong> Stunned by Stompy’s beauty! ♥</p>
+        <p><strong>James:</strong> 👑 1 ♥</p>
+        <p><strong>Emily:</strong> You go, Stomp!</p>
+      </div>
     </div>
 
     <div>
-      <div class="post">
-        <p><strong>Stompy</strong></p>
-        <p>Just got a fresh trim! Thanks to everyone who helped fund my spa day 🐐💖</p>
+      <div class="status">
+        <h2>🟡 Stompy is feeling: <span style="color:#ff69b4">Silly</span></h2>
+        <div class="status-box">"Just had a big bowl of insects — thanks Name for the $25 treat!"</div>
       </div>
+
       <div class="post">
-        <p><strong>Stompy</strong></p>
-        <p>We're raising hay money for winter! Help me stay warm and full ❄️🌾</p>
+        <p><strong>🎥 Video - 3 hours ago</strong></p>
+        <div style="background-color:#ccc; height:150px; border-radius:8px;"></div>
+      </div>
+
+      <div class="post">
+        <p><strong>💖 Status - 6 hours ago</strong></p>
+        <p>Thank you to Name for the $25 treat donation! I just had a big bowl of insects</p>
+      </div>
+
+      <div class="post">
+        <p><strong>📸 Photo - 10 hours ago</strong></p>
+        <div style="background-color:#ccc; height:150px; border-radius:8px;"></div>
       </div>
     </div>
   </div>

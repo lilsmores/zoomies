@@ -110,8 +110,6 @@
       border-bottom: 2px solid #ff69b4;
       background-color: transparent;
     }
-      background-color: #222;
-    }
     .content {
       display: grid;
       grid-template-columns: 1fr 2fr;
@@ -164,14 +162,32 @@
       background-color: #1a1a1a;
       padding: 1rem;
       border-radius: 10px;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
     .post p {
-  margin: 0.5rem 0;
-  background-color: #331a2b;
-  padding: 0.75rem;
-  border-radius: 8px;
-}
+      margin: 0.5rem 0;
+      background-color: #331a2b;
+      padding: 0.75rem;
+      border-radius: 8px;
+    }
+    .post .reactions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .post .comment-box {
+      margin-top: 1rem;
+      display: flex;
+    }
+    .post .comment-box input {
+      flex: 1;
+      padding: 0.5rem;
+      border-radius: 6px 0 0 6px;
+      border: none;
+    }
+    .post .comment-box button {
+      border-radius: 0 6px 6px 0;
+    }
     .button {
       background-color: #ff69b4;
       color: #fff;
@@ -183,7 +199,6 @@
     }
   </style>
 </head>
-
 <body>
   <header>
     <div class="branding">
@@ -240,7 +255,7 @@
       </div>
 
       <div class="gallery">
-        <h2>Photo Gallery </h2>
+        <h2>Photo Gallery ♥</h2>
         <div class="photo-grid">
           <img src="https://placehold.co/150x100?text=1" alt="Stompy 1" />
           <img src="https://placehold.co/150x100?text=2" alt="Stompy 2" />
@@ -271,31 +286,55 @@
     </div>
 
     <div>
-     <div class="status">
-  <h2>🟡 Stompy is feeling: <span style="color:#ff69b4">Silly</span></h2>
-  <div class="status-box">Just had a big bowl of insects — thanks Name for the $25 treat!</div>
-</div>
+      <div class="status">
+        <h2>🤪 Stompy is feeling: <span style="color:#ff69b4">Silly</span></h2>
+        <div class="status-box">Just had a big bowl of insects — thanks Name for the $25 treat!</div>
+      </div>
 
-<div class="post">
-  <p><strong>🎥 Video - 3 hours ago</strong></p>
-  <div style="background-color:#ccc; height:150px; border-radius:8px;"></div>
-</div>
+      <div class="post">
+        <p><strong>🎥 Video - 3 hours ago</strong></p>
+        <p>Check out Stompy's latest antics in the pasture!</p>
+        <div class="reactions">
+          <button class="button">👍</button>
+          <button class="button">😂</button>
+          <button class="button">😍</button>
+          <button class="button">😢</button>
+        </div>
+        <div class="comment-box">
+          <input type="text" placeholder="Add a comment..." />
+          <button class="button">Post</button>
+        </div>
+      </div>
 
-<div class="post">
-  <p><strong>💖 Status - 6 hours ago</strong></p>
-  <p>Thank you to Name for the $25 treat donation! I just had a big bowl of insects</p>
-</div>
+      <div class="post">
+        <p><strong>🩷 Status - 5 hours ago</strong></p>
+        <p>Thanks Name for the $255 donation yabababadaddboooo</p>
+        <div class="reactions">
+          <button class="button">👍</button>
+          <button class="button">😂</button>
+          <button class="button">😍</button>
+          <button class="button">😢</button>
+        </div>
+        <div class="comment-box">
+          <input type="text" placeholder="Add a comment..." />
+          <button class="button">Post</button>
+        </div>
+      </div>
 
-<div class="post">
-  <p><strong>💖 Status - 8 hours ago</strong></p>
-  <p>Thank you to Name for the $255! yabababdodadadadadbdoooo</p>
-</div>
-
-<div class="post">
-  <p><strong>📸 Photo - 10 hours ago</strong></p>
-  <div style="background-color:#ccc; height:150px; border-radius:8px;"></div>
-</div>
-
+      <div class="post">
+        <p><strong>📸 Photo - 6 hours ago</strong></p>
+        <p>Stompy posing with his goat squad 🐐📸</p>
+        <div class="reactions">
+          <button class="button">👍</button>
+          <button class="button">😂</button>
+          <button class="button">😍</button>
+          <button class="button">😢</button>
+        </div>
+        <div class="comment-box">
+          <input type="text" placeholder="Add a comment..." />
+          <button class="button">Post</button>
+        </div>
+      </div>
     </div>
   </div>
 </body>

@@ -47,6 +47,9 @@
     .profile-info {
       margin-top: 60px;
       padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     .profile-info h1 {
       margin: 0;
@@ -55,6 +58,16 @@
     .profile-info p {
       margin: 0.25rem 0;
       color: #ccc;
+    }
+    .profile-actions button {
+      background-color: #ff69b4;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin-left: 0.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
     }
     .tabs {
       display: flex;
@@ -129,6 +142,36 @@
       font-style: italic;
       color: #ff69b4;
     }
+    .donate-button {
+      display: inline-block;
+      margin-top: 1rem;
+      background-color: #ff69b4;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .comment-input {
+      margin-top: 1rem;
+      display: flex;
+    }
+    .comment-input input {
+      flex: 1;
+      padding: 0.5rem;
+      border-radius: 6px 0 0 6px;
+      border: none;
+    }
+    .comment-input button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0 6px 6px 0;
+      background-color: #ff69b4;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -149,8 +192,14 @@
   </section>
 
   <section class="profile-info">
-    <h1>Stompy</h1>
-    <p>Ambassador Goat from Alveus Sanctuary • Loves headbutts and snacks</p>
+    <div>
+      <h1>Stompy</h1>
+      <p>Ambassador Goat • Loves headbutts and snacks</p>
+    </div>
+    <div class="profile-actions">
+      <button>💗 Follow</button>
+      <button>🎁 Donate</button>
+    </div>
   </section>
 
   <div class="tabs">
@@ -175,6 +224,7 @@
         <div class="progress">
           <div class="progress-bar"></div>
         </div>
+        <button class="donate-button">Donate</button>
       </div>
 
       <div class="gallery">
@@ -191,6 +241,10 @@
         <p><strong>Clara:</strong> Stunned by Stompy’s beauty! ♥</p>
         <p><strong>James:</strong> 👑 1 ♥</p>
         <p><strong>Emily:</strong> You go, Stomp!</p>
+        <div class="comment-input">
+          <input type="text" placeholder="Add a comment...">
+          <button>Post</button>
+        </div>
       </div>
     </div>
 

@@ -25,11 +25,11 @@
       align-items: center;
     }
     header img {
-      height: 150px;
+      height: 100px;
     }
     header h2 {
       font-family: 'Calistoga', serif;
-      font-size: 3rem;
+      font-size: 2.5rem;
       margin-left: 0.75rem;
     }
     nav {
@@ -45,125 +45,33 @@
       padding: 0.5rem 1rem;
     }
     nav a.login::before {
-      content: "👤";
+      content: "\1F464";
       margin-right: 0.5rem;
-    }
-    .cover {
-      position: relative;
-      height: 250px;
-      background: url('https://placehold.co/1200x250/333/aaa') center/cover no-repeat;
-    }
-    .profile-img {
-      position: absolute;
-      bottom: -50px;
-      left: 2rem;
-      border: 4px solid #000;
-      border-radius: 50%;
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-    }
-    .profile-info {
-      margin-top: 60px;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .profile-info h1 {
-      margin: 0;
-      font-size: 1.5rem;
-    }
-    .profile-info p {
-      margin: 0.25rem 0;
-      color: #ccc;
-    }
-    .profile-actions button {
-      background-color: #ff69b4;
-      color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      margin-left: 0.5rem;
-      border-radius: 999px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .tabs {
-      display: flex;
-      border-bottom: 1px solid #333;
-      margin-top: 1rem;
-      padding: 0 2rem;
-    }
-    .tabs a {
-      margin-right: 2rem;
-      text-decoration: none;
-      color: #fff;
-      padding: 0.75rem 1rem;
-      border-bottom: 2px solid transparent;
-      border-radius: 999px;
-    }
-    .tabs a:hover,
-    .tabs a:focus {
-      color: #ff69b4;
-      border-bottom: 2px solid #ff69b4;
-      background-color: #222;
-    }
-    .content {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 2rem;
-      padding: 2rem;
     }
     .card, .gallery, .status, .comments, .leaderboard {
       background-color: #1a1a1a;
       padding: 1.5rem;
       border-radius: 16px;
+      border: none;
       box-shadow: 0 4px 16px rgba(255, 105, 180, 0.2);
+      margin: 1.5rem 0;
     }
-    .progress {
-      background-color: #333;
-      border-radius: 10px;
-      overflow: hidden;
-      height: 10px;
-      margin-top: 0.5rem;
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem;
     }
-    .progress-bar {
-      background-color: #ff69b4;
-      height: 100%;
-      width: 40%;
-    }
-    .gallery .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.5rem;
-    }
-    .gallery img {
-      width: 100%;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-    .gallery a {
-      display: block;
-      margin-top: 0.75rem;
-      color: #ff69b4;
-      font-weight: 600;
+    .tabs a {
       text-decoration: none;
+      color: #fff;
+      border-bottom: 2px solid transparent;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
     }
-    .status-box {
+    .tabs a:hover {
+      border-bottom: 2px solid #ff69b4;
       background-color: #222;
-      padding: 1rem;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-    }
-    .post {
-      background-color: #1a1a1a;
-      padding: 1rem;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-    }
-    .post p {
-      margin: 0.5rem 0;
     }
     .button {
       background-color: #ff69b4;
@@ -173,6 +81,15 @@
       padding: 0.5rem 1rem;
       font-weight: 600;
       cursor: pointer;
+    }
+    .status-box {
+      background-color: #222;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+    section {
+      margin-bottom: 2rem;
     }
   </style>
 </head>
@@ -220,7 +137,7 @@
         <p>Hi I’m Stompy and I’m an ostrich blah blah I was found in blah blah blah. My favorite food is blah blah bugs.</p>
         <p><strong>Joined:</strong> August 2023</p>
         <button class="button">Learn More</button>
-        <div style="background-color:#ccc; height:150px; border-radius:8px;"></div>
+      
       </div>
 
       <div class="card">
@@ -251,7 +168,6 @@
         <div style="margin-top: 1rem; display: flex;">
           <input type="text" placeholder="Add a comment..." style="flex: 1; padding: 0.5rem; border-radius: 6px 0 0 6px; border: none;">
           <button class="button" style="border-radius: 0 6px 6px 0;">Post</button>
-          <div style="background-color:#ccc; height:150px; border-radius:8px;"></div>
         </div>
       </div>
 
@@ -270,7 +186,7 @@
       <div class="status">
         <h2>🤪 Stompy is feeling: <span style="color:#ff69b4">Silly</span></h2>
         <div class="status-box">Just had a big bowl of insects — thanks Name for the $25 treat!</div>
-        <div style="background-color:#ccc; height:150px; border-radius:8px;"></div>
+        
       </div>
 
       <div class="post">
@@ -281,7 +197,7 @@
       <div class="post">
         <p><strong>💖 Status - 6 hours ago</strong></p>
         <p>Thank you to Name for the $15 treat donation! yabdbaadhabdhabdhabd</p>
-        <div style="background-color:#ccc; height:150px; border-radius:8px;"></div>
+        
       </div>
 
       <div class="post">
@@ -292,7 +208,7 @@
       <div class ="post">
         <p><strong>💖 Status - 6 hours ago</strong></p>
         <p>Thank you to Name for the $55 treat donation! meowmoewmeowmeowmeowwww</p>
-        <div style="background-color:#ccc; height:150px; border-radius:8px;"></div>
+      
       </div>
       
     </div>

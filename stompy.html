@@ -45,51 +45,125 @@
       padding: 0.5rem 1rem;
     }
     nav a.login::before {
-      content: "\1F464";
+      content: "👤";
       margin-right: 0.5rem;
     }
-    .cover-profile {
+    .cover {
       position: relative;
-      text-align: center;
+      height: 250px;
+      background: url('https://placehold.co/1200x250/333/aaa?text=Cover Pic') center/cover no-repeat;
     }
-    .cover-profile img.cover {
-      width: 100%;
-      height: 200px;
+    .profile-img {
+      position: absolute;
+      bottom: -50px;
+      left: 2rem;
+      border: 4px solid #000;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
       object-fit: cover;
     }
-    .cover-profile img.profile {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 4px solid #000;
-      position: absolute;
-      bottom: -75px;
-      left: 2rem;
+    .profile-info {
+      margin-top: 60px;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .profile-info h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    .profile-info p {
+      margin: 0.25rem 0;
+      color: #ccc;
+    }
+    .profile-actions button {
+      background-color: #ff69b4;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin-left: 0.5rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #333;
+      margin-top: 1rem;
+      padding: 0 2rem;
+    }
+    .tabs a {
+      margin-right: 2rem;
+      text-decoration: none;
+      color: #fff;
+      padding: 0.75rem 1rem;
+      border-bottom: 2px solid transparent;
+      border-radius: 999px;
+    }
+    .tabs a:hover,
+    .tabs a:focus {
+      color: #ff69b4;
+      border-bottom: 2px solid #ff69b4;
+      background-color: #222;
+    }
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+      padding: 2rem;
     }
     .card, .gallery, .status, .comments, .leaderboard {
       background-color: #1a1a1a;
       padding: 1.5rem;
       border-radius: 16px;
-      border: none;
       box-shadow: 0 4px 16px rgba(255, 105, 180, 0.2);
-      margin: 2rem;
     }
-    .tabs {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      padding: 1rem;
+    .progress {
+      background-color: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 10px;
+      margin-top: 0.5rem;
     }
-    .tabs a {
+    .progress-bar {
+      background-color: #ff69b4;
+      height: 100%;
+      width: 40%;
+    }
+    .gallery .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+    .gallery img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    .gallery a {
+      display: block;
+      margin-top: 0.75rem;
+      color: #ff69b4;
+      font-weight: 600;
       text-decoration: none;
-      color: #fff;
-      border-bottom: 2px solid transparent;
-      padding: 0.5rem 1rem;
-      border-radius: 999px;
     }
-    .tabs a:hover {
-      border-bottom: 2px solid #ff69b4;
+    .status-box {
       background-color: #222;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+    .post {
+      background-color: #1a1a1a;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    .post p {
+      margin: 0.5rem 0;
     }
     .button {
       background-color: #ff69b4;
@@ -100,59 +174,36 @@
       font-weight: 600;
       cursor: pointer;
     }
-    .status-box {
-      background-color: #222;
-      padding: 1rem;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-    }
-    .status-box.photo, .status-box.video {
-      border-left: 4px solid #ff69b4;
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.5rem;
-    }
-    .gallery-grid img {
-      width: 100%;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-    .comment-input {
-      display: flex;
-      margin-top: 1rem;
-    }
-    .comment-input input {
-      flex: 1;
-      padding: 0.5rem;
-      border: none;
-      border-radius: 6px 0 0 6px;
-    }
-    .comment-input button {
-      border-radius: 0 6px 6px 0;
-    }
   </style>
 </head>
 <body>
   <header>
     <div class="branding">
       <img src="Logo.png" alt="Zoomies Logo" />
-      <h2>Zoomies</h2>
+      <h2 style="color: #fff;">Zoomies</h2>
     </div>
     <nav>
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Ambassadors</a>
-      <a href="#" class="login">Login</a>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="ambassadors.html">Ambassadors</a>
+      <a href="login.html" class="login">Login</a>
     </nav>
   </header>
 
-  <div class="cover-profile">
-    <img src="https://placehold.co/1200x200?text=Cover+Photo" alt="Cover" class="cover" />
-    <img src="https://placehold.co/150x150?text=Stompy" alt="Profile" class="profile" />
-  </div>
+  <section class="cover">
+    <img src="https://placehold.co/100x100?text=🐐" alt="Stompy the Goat" class="profile-img" />
+  </section>
+
+  <section class="profile-info">
+    <div>
+      <h1>Stompy</h1>
+      <p>Ambassador Goat • Loves headbutts and snacks</p>
+    </div>
+    <div class="profile-actions">
+      <button>💗 Follow</button>
+      <button>🎁 Donate</button>
+    </div>
+  </section>
 
   <div class="tabs">
     <a href="#">Timeline</a>
@@ -162,62 +213,81 @@
     <a href="#">More</a>
   </div>
 
-  <section class="card">
-    <h2>About Stompy</h2>
-    <p>Hi I’m Stompy and I’m an ostrich blah blah I was found in blah blah blah. My favorite food is blah blah bugs.</p>
-    <button class="button">Learn More</button>
-  </section>
+  <div class="content">
+    <div>
+      <div class="card">
+        <h2>About Stompy</h2>
+        <p>Hi I’m Stompy and I’m an ostrich blah blah I was found in blah blah blah. My favorite food is blah blah bugs.</p>
+        <p><strong>Joined:</strong> August 2023</p>
+        <button class="button">Learn More</button>
+      </div>
 
-  <section class="card">
-    <h2>Support Stompy</h2>
-    <p>$815 raised of $2,000 goal</p>
-    <div style="background-color: #333; border-radius: 10px; height: 10px;">
-      <div style="background-color: #ff69b4; width: 40%; height: 100%;"></div>
+      <div class="card">
+        <h2>Support Stompy</h2>
+        <p>$815 raised of $2,000 goal</p>
+        <div class="progress">
+          <div class="progress-bar"></div>
+        </div>
+        <button class="button" style="margin-top: 1rem;">Donate</button>
+      </div>
+
+      <div class="gallery">
+        <h2>Photo Gallery ♥</h2>
+        <div class="photo-grid">
+          <img src="https://placehold.co/150x100?text=1" alt="Stompy 1" />
+          <img src="https://placehold.co/150x100?text=2" alt="Stompy 2" />
+          <img src="https://placehold.co/150x100?text=3" alt="Stompy 3" />
+        </div>
+        <a href="#">See all photos</a>
+      </div>
+
+      <div class="comments">
+        <h2>Comments ✧</h2>
+        <p><strong>Clara:</strong> Stunned by Stompy’s beauty! ♥</p>
+        <p><strong>James:</strong> 👑 1 ♥</p>
+        <p><strong>Emily:</strong> You go, Stomp!</p>
+        <div style="margin-top: 1rem; display: flex;">
+          <input type="text" placeholder="Add a comment..." style="flex: 1; padding: 0.5rem; border-radius: 6px 0 0 6px; border: none;">
+          <button class="button" style="border-radius: 0 6px 6px 0;">Post</button>
+        </div>
+      </div>
+
+      <div class="leaderboard">
+        <h2>🏆 Top Supporters</h2>
+        <ol>
+          <li><strong>Pawfect Coffee Co.</strong> – $2,000</li>
+          <li><strong>Linda S.</strong> – $1,500</li>
+          <li><strong>CryptoCat DAO</strong> – $1,250</li>
+        </ol>
+      </div>
     </div>
-    <button class="button" style="margin-top: 1rem;">Donate</button>
-  </section>
 
-  <section class="gallery">
-    <h2>Photo Gallery ♥</h2>
-    <div class="gallery-grid">
-      <img src="https://placehold.co/150x100?text=1" />
-      <img src="https://placehold.co/150x100?text=2" />
-      <img src="https://placehold.co/150x100?text=3" />
-      <img src="https://placehold.co/150x100?text=4" />
-      <img src="https://placehold.co/150x100?text=5" />
-      <img src="https://placehold.co/150x100?text=6" />
-      <img src="https://placehold.co/150x100?text=7" />
-      <img src="https://placehold.co/150x100?text=8" />
-      <img src="https://placehold.co/150x100?text=9" />
+    <div>
+      <div class="status">
+        <h2>🟡 Stompy is feeling: <span style="color:#ff69b4">Silly</span></h2>
+        <div class="status-box">Just had a big bowl of insects — thanks Name for the $25 treat!</div>
+      </div>
+
+      <div class="post">
+        <p><strong>🎥 Video - 3 hours ago</strong></p>
+        <div style="background-color:#ccc; height:150px; border-radius:8px;"></div>
+      </div>
+
+      <div class="post">
+        <p><strong>💖 Status - 6 hours ago</strong></p>
+        <p>Thank you to Name for the $25 treat donation! I just had a big bowl of insects</p>
+      </div>
+
+       <div class="post">
+        <p><strong>💖 Status - 8 hours ago</strong></p>
+        <p>Thank you to Name for the $255 treat donation! yabababdodadadadadbdoooo</p>
+      </div>
+
+      <div class="post">
+        <p><strong>📸 Photo - 10 hours ago</strong></p>
+        <div style="background-color:#ccc; height:150px; border-radius:8px;"></div>
+      </div>
     </div>
-    <a href="#" style="display: inline-block; margin-top: 0.75rem; color: #ff69b4; font-weight: 600;">See all photos</a>
-  </section>
-
-  <section class="status">
-    <h2>🟡 Stompy is feeling: <span style="color:#ff69b4">Silly</span></h2>
-    <div class="status-box">Just had a big bowl of insects — thanks Name for the $25 treat!</div>
-    <div class="status-box photo">📸 Stompy enjoying the sun! [Photo]</div>
-    <div class="status-box video">🎥 New video from the pasture!</div>
-  </section>
-
-  <section class="comments">
-    <h2>Comments ✧</h2>
-    <p><strong>Clara:</strong> Stunned by Stompy’s beauty! ♥</p>
-    <p><strong>James:</strong> 👑 1 ♥</p>
-    <p><strong>Emily:</strong> You go, Stomp!</p>
-    <div class="comment-input">
-      <input type="text" placeholder="Add a comment..." />
-      <button class="button">Post</button>
-    </div>
-  </section>
-
-  <section class="leaderboard">
-    <h2>🏆 Top Supporters</h2>
-    <ol>
-      <li><strong>Pawfect Coffee Co.</strong> – $2,000</li>
-      <li><strong>Linda S.</strong> – $1,500</li>
-      <li><strong>CryptoCat DAO</strong> – $1,250</li>
-    </ol>
-  </section>
+  </div>
 </body>
 </html>

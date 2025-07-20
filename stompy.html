@@ -110,6 +110,12 @@
       border-bottom: 2px solid #ff69b4;
       background-color: transparent;
     }
+    
+    .tabs a.active {
+      color: #ff69b4;
+      border-bottom: 2px solid #ff69b4;
+      background-color: transparent;
+    }
     .content {
       display: grid;
       grid-template-columns: 1fr 2fr;
@@ -174,16 +180,50 @@
       display: flex;
       gap: 0.5rem;
       margin-top: 0.75rem;
+      justify-content: flex-end;
     }
     .post .comment-box {
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       display: flex;
+      justify-content: flex-end;
     }
     .post .comment-box input {
-      flex: 1;
+      width: 200px;
       padding: 0.5rem;
       border-radius: 6px 0 0 6px;
       border: none;
+    }
+    
+    .status .reactions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      justify-content: flex-end;
+    }
+    .status .comment-box {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .status .comment-box input {
+      width: 200px;
+      padding: 0.5rem;
+      border-radius: 6px 0 0 6px;
+      border: none;
+    }
+    
+    .status .comment-box button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 0 6px 6px 0;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    
+    .status .comment-box button:hover {
+      background-color: #444;
     }
     .post .comment-box button {
       border-radius: 0 6px 6px 0;
@@ -196,6 +236,103 @@
       padding: 0.5rem 1rem;
       font-weight: 600;
       cursor: pointer;
+    }
+    
+    .donation-bar {
+      background-color: #1a1a1a;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #333;
+    }
+    
+    .donation-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .donation-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    
+    .donation-text {
+      font-weight: 600;
+      color: #fff;
+    }
+    
+    .donation-percentage {
+      color: #fc97ca;
+      font-weight: 600;
+    }
+    
+    .donation-progress {
+      background-color: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 12px;
+    }
+    
+    .donation-progress-bar {
+      background-color: #fc97ca;
+      height: 100%;
+      width: 41%;
+      transition: width 0.3s ease;
+    }
+    
+    .donation-buttons {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      justify-content: center;
+    }
+    
+    .donation-option {
+      background-color: #fc97ca;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.9rem;
+    }
+    
+    .donation-option:hover {
+      background-color: #ff69b4;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(252, 151, 202, 0.4);
+    }
+    
+    .donation-option.custom {
+      background-color: transparent;
+      border: 2px solid #fc97ca;
+      color: #fc97ca;
+    }
+    
+    .donation-option.custom:hover {
+      background-color: #fc97ca;
+      color: #fff;
+    }
+    
+    .comment-item {
+      background-color: #222;
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .comment-item p {
+      margin: 0;
+    }
+    
+    .leaderboard-list li {
+      background-color: #222;
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      list-style: decimal;
     }
   </style>
 </head>
@@ -228,8 +365,26 @@
     </div>
   </section>
 
+  <div class="donation-bar">
+    <div class="donation-content">
+      <div class="donation-info">
+        <span class="donation-text">$815 raised of $2,000 goal</span>
+        <span class="donation-percentage">41%</span>
+      </div>
+      <div class="donation-progress">
+        <div class="donation-progress-bar"></div>
+      </div>
+      <div class="donation-buttons">
+        <button class="donation-option">$10</button>
+        <button class="donation-option">$25</button>
+        <button class="donation-option">$50</button>
+        <button class="donation-option custom">Custom</button>
+      </div>
+    </div>
+  </div>
+
   <div class="tabs">
-    <a href="#">Timeline</a>
+    <a href="#" class="active">Timeline</a>
     <a href="#">About</a>
     <a href="#">Donations</a>
     <a href="#">Photos</a>
@@ -239,23 +394,16 @@
   <div class="content">
     <div>
       <div class="card">
-        <h2>About Stompy</h2>
+        <h2>About Stompy </h2>
         <p>Hi I’m Stompy and I’m an ostrich blah blah I was found in blah blah blah. My favorite food is blah blah bugs.</p>
         <p><strong>Joined:</strong> August 2023</p>
         <button class="button">Learn More</button>
       </div>
 
-      <div class="card">
-        <h2>Support Stompy</h2>
-        <p>$815 raised of $2,000 goal</p>
-        <div class="progress">
-          <div class="progress-bar"></div>
-        </div>
-        <button class="button" style="margin-top: 1rem;">Donate</button>
-      </div>
+
 
       <div class="gallery">
-        <h2>Photo Gallery ♥</h2>
+        <h2>Photo Gallery </h2>
         <div class="photo-grid">
           <img src="https://placehold.co/150x100?text=1" alt="Stompy 1" />
           <img src="https://placehold.co/150x100?text=2" alt="Stompy 2" />
@@ -265,10 +413,16 @@
       </div>
 
       <div class="comments">
-        <h2>Comments ✧</h2>
-        <p><strong>Clara:</strong> Stunned by Stompy’s beauty! ♥</p>
-        <p><strong>James:</strong> 👑 1 ♥</p>
-        <p><strong>Emily:</strong> You go, Stomp!</p>
+        <h2>Comments </h2>
+        <div class="comment-item">
+          <p><strong>Clara:</strong> Stunned by Stompy's beauty! ♥</p>
+        </div>
+        <div class="comment-item">
+          <p><strong>James:</strong> 👑 1 ♥</p>
+        </div>
+        <div class="comment-item">
+          <p><strong>Emily:</strong> You go, Stomp!</p>
+        </div>
         <div style="margin-top: 1rem; display: flex;">
           <input type="text" placeholder="Add a comment..." style="flex: 1; padding: 0.5rem; border-radius: 6px 0 0 6px; border: none;">
           <button class="button" style="border-radius: 0 6px 6px 0;">Post</button>
@@ -277,7 +431,7 @@
 
       <div class="leaderboard">
         <h2>🏆 Top Supporters</h2>
-        <ol>
+        <ol class="leaderboard-list">
           <li><strong>Pawfect Coffee Co.</strong> – $2,000</li>
           <li><strong>Linda S.</strong> – $1,500</li>
           <li><strong>CryptoCat DAO</strong> – $1,250</li>

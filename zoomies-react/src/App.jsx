@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import ZoomiesHeader from './components/ZoomiesHeader';
 import AmbassadorProfilePage from './pages/AmbassadorProfilePage';
 import AmbassadorProfilePageCopy from './pages/AmbassadorProfilePageCopy';

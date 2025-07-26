@@ -170,7 +170,7 @@ export default function AmbassadorHub() {
             <span style={{
               position: 'absolute',
               left: 12,
-              top: '50%',
+              top: '65%',
               transform: 'translateY(-50%)',
               fontSize: 12,
               color: 'var(--text)',
@@ -178,7 +178,10 @@ export default function AmbassadorHub() {
               lineHeight: 1,
               display: 'flex',
               alignItems: 'center',
-              height: '100%'
+              justifyContent: 'center',
+              height: '100%',
+              width: '20px',
+              marginTop: 1
             }}>
               🔍
             </span>

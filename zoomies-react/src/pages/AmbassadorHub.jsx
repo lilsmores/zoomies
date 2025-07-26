@@ -145,11 +145,12 @@ export default function AmbassadorHub() {
           </div>
         </div>
         
-        {/* Search Bar and Filters */}
+        {/* Filters */}
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 24, marginBottom: 24, justifyContent: 'center', flexWrap: 'wrap' }}>
+          
           {/* Search Bar */}
-          <div style={{ position: 'relative', maxWidth: 200, marginRight: 52 }}>
-            <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8, display: 'block', textAlign: 'left' }}>Search</label>
+          <div style={{ position: 'relative', maxWidth: 150, marginRight: 48 }}>
+            <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 5, display: 'block', textAlign: 'left' }}>Search</label>
             <input
               type="text"
               placeholder="Search animals..."
@@ -157,7 +158,7 @@ export default function AmbassadorHub() {
               onChange={(e) => setSearchTerm(e.target.value)}
               style={{
                 width: '100%',
-                padding: '8px 12px 8px 36px',
+                padding: '2px 12px 2px 36px',
                 fontSize: 14,
                 border: '1.5px solid var(--border)',
                 borderRadius: 8,
@@ -171,9 +172,13 @@ export default function AmbassadorHub() {
               left: 12,
               top: '50%',
               transform: 'translateY(-50%)',
-              fontSize: 14,
+              fontSize: 12,
               color: 'var(--text)',
-              opacity: 0.6
+              opacity: 0.6,
+              lineHeight: 1,
+              display: 'flex',
+              alignItems: 'center',
+              height: '100%'
             }}>
               🔍
             </span>
@@ -230,7 +235,7 @@ export default function AmbassadorHub() {
           </div>
           
           {/* Clear Filters Button */}
-          <div style={{ display: 'flex', alignItems: 'end' }}>
+          <div style={{ display: 'flex', alignItems: 'end', paddingTop: 10 }}>
             <button
               onClick={() => {
                 setSearchTerm('');

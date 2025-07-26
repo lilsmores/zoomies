@@ -69,7 +69,7 @@ const LEADERBOARD = [
 ];
 
 export default function UserProfile() {
-  const [activeTab, setActiveTab] = useState('activity');
+  const [activeTab, setActiveTab] = useState('timeline');
   const [isEditing, setIsEditing] = useState(false);
 
   const renderProgressBar = (current, max) => {
@@ -130,7 +130,7 @@ export default function UserProfile() {
       {/* Tabs */}
       <div style={{ display: 'flex', gap: 8, marginBottom: 24, borderBottom: '1px solid var(--gray)' }}>
         {[
-          { id: 'activity', label: 'Activity', icon: '📱' },
+          { id: 'timeline', label: 'Timeline', icon: '📱' },
           { id: 'badges', label: 'Badges', icon: '🏆' },
           { id: 'following', label: 'Following', icon: '👥' },
           { id: 'donations', label: 'Donations', icon: '💖' },
@@ -159,19 +159,59 @@ export default function UserProfile() {
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 24 }}>
         {/* Main Content */}
         <div>
-          {activeTab === 'activity' && (
+          {activeTab === 'timeline' && (
             <div style={{ background: 'var(--card)', borderRadius: 16, padding: 24 }}>
-              <h2 style={{ margin: '0 0 20px 0', fontSize: 24 }}>Recent Activity</h2>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                {ACTIVITY_FEED.map((activity, index) => (
-                  <div key={index} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                    <div style={{ fontSize: 20 }}>{activity.icon}</div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ marginBottom: 4 }}>{activity.content}</div>
-                      <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.6 }}>{activity.time}</div>
+              <h2 style={{ margin: '0 0 20px 0', fontSize: 24 }}>Timeline</h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                {/* Timeline posts similar to animal profiles */}
+                <div style={{ border: '1px solid var(--gray)', borderRadius: 12, padding: 20 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+                    <img src={USER_DATA.avatar} alt={USER_DATA.name} style={{ width: 40, height: 40, borderRadius: '50%' }} />
+                    <div>
+                      <div style={{ fontWeight: 600 }}>{USER_DATA.name}</div>
+                      <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>2 hours ago</div>
                     </div>
                   </div>
-                ))}
+                  <p style={{ margin: '0 0 16px 0', lineHeight: 1.6 }}>Just donated $50 to Stompy! 🐐 So happy to help this little guy get the care he needs. #sanctuarylife #animalwelfare</p>
+                  <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>❤️ 24</button>
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>💬 8</button>
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>🔄 Share</button>
+                  </div>
+                </div>
+
+                <div style={{ border: '1px solid var(--gray)', borderRadius: 12, padding: 20 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+                    <img src={USER_DATA.avatar} alt={USER_DATA.name} style={{ width: 40, height: 40, borderRadius: '50%' }} />
+                    <div>
+                      <div style={{ fontWeight: 600 }}>{USER_DATA.name}</div>
+                      <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>1 day ago</div>
+                    </div>
+                  </div>
+                  <p style={{ margin: '0 0 16px 0', lineHeight: 1.6 }}>Visited Alveus Sanctuary today! The animals are doing amazing and the staff is incredible. Luna is recovering so well! 🐄✨</p>
+                  <img src="https://images.unsplash.com/photo-1518715308788-3005759c61d4?w=400&h=300&fit=crop&crop=center" alt="Sanctuary visit" style={{ width: '100%', borderRadius: 8, marginBottom: 16 }} />
+                  <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>❤️ 42</button>
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>💬 15</button>
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>🔄 Share</button>
+                  </div>
+                </div>
+
+                <div style={{ border: '1px solid var(--gray)', borderRadius: 12, padding: 20 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+                    <img src={USER_DATA.avatar} alt={USER_DATA.name} style={{ width: 40, height: 40, borderRadius: '50%' }} />
+                    <div>
+                      <div style={{ fontWeight: 600 }}>{USER_DATA.name}</div>
+                      <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>3 days ago</div>
+                    </div>
+                  </div>
+                  <p style={{ margin: '0 0 16px 0', lineHeight: 1.6 }}>Earned the "Fundraiser" badge! 🏆 So proud to have raised over $500 for animal causes. Every little bit helps! #fundraiser #animaladvocate</p>
+                  <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>❤️ 67</button>
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>💬 23</button>
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>🔄 Share</button>
+                  </div>
+                </div>
               </div>
             </div>
           )}
@@ -268,17 +308,16 @@ export default function UserProfile() {
 
         {/* Sidebar */}
         <div>
-          {/* Leaderboard */}
+          {/* Activity Feed */}
           <div style={{ background: 'var(--card)', borderRadius: 16, padding: 24, marginBottom: 24 }}>
-            <h3 style={{ margin: '0 0 16px 0', fontSize: 20 }}>Top Donors</h3>
+            <h3 style={{ margin: '0 0 16px 0', fontSize: 20 }}>Recent Activity</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {LEADERBOARD.map((user, index) => (
-                <div key={user.name} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <div style={{ fontSize: 18, fontWeight: 600, color: 'var(--primary)', width: 24 }}>#{user.rank}</div>
-                  <img src={user.avatar} alt={user.name} style={{ width: 32, height: 32, borderRadius: '50%' }} />
+              {ACTIVITY_FEED.map((activity, index) => (
+                <div key={index} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', padding: '8px 0', borderBottom: '1px solid var(--gray)' }}>
+                  <div style={{ fontSize: 16 }}>{activity.icon}</div>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: 600 }}>{user.name}</div>
-                    <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>${user.amount}</div>
+                    <div style={{ fontSize: 14, marginBottom: 2 }}>{activity.content}</div>
+                    <div style={{ fontSize: 12, color: 'var(--text)', opacity: 0.6 }}>{activity.time}</div>
                   </div>
                 </div>
               ))}

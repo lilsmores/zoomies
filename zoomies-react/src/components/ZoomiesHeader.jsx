@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import logoPink from '../assets/LogoPink.png';
 import logoWhite from '../assets/LogoWhite.png';
 
@@ -44,9 +45,9 @@ export default function ZoomiesHeader() {
         }} />
         <span style={{ fontFamily: 'Calistoga, serif', fontSize: 25, color: 'var(--primary, #fc97ca)', letterSpacing: 1 }}>Zoomies</span>
         <nav style={{ display: 'flex', gap: 24, fontSize: 18 }}>
-          <a href="/" style={{ color: 'var(--text, #18171C)', textDecoration: 'none', fontWeight: 500 }}>Home</a>
-          <a href="/ambassador-hub" style={{ color: 'var(--text, #18171C)', textDecoration: 'none', fontWeight: 500 }}>Animals</a>
-          <a href="/community" style={{ color: 'var(--text, #18171C)', textDecoration: 'none', fontWeight: 500 }}>Community</a>
+          <Link to="/" style={{ color: 'var(--text, #18171C)', textDecoration: 'none', fontWeight: 500 }}>Home</Link>
+          <Link to="/ambassador-hub" style={{ color: 'var(--text, #18171C)', textDecoration: 'none', fontWeight: 500 }}>Animals</Link>
+          <Link to="/community" style={{ color: 'var(--text, #18171C)', textDecoration: 'none', fontWeight: 500 }}>Community</Link>
         </nav>
       </div>
       <form style={{ flex: 1, maxWidth: 240, margin: '0 1.25rem', display: 'flex', alignItems: 'center', background: 'var(--background, #F8F6FF)', borderRadius: 24, boxShadow: '0 1px 4px rgba(0,0,0,0.03)' }}>

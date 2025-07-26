@@ -162,6 +162,38 @@ export default function UserProfile() {
           {activeTab === 'timeline' && (
             <div style={{ background: 'var(--card)', borderRadius: 16, padding: 24 }}>
               <h2 style={{ margin: '0 0 20px 0', fontSize: 24 }}>Timeline</h2>
+              
+              {/* Post Creation */}
+              <div style={{ background: 'var(--background)', borderRadius: 12, padding: 20, marginBottom: 24, border: '1px solid var(--gray)' }}>
+                <div style={{ display: 'flex', gap: 12, marginBottom: 16 }}>
+                  <img src={USER_DATA.avatar} alt={USER_DATA.name} style={{ width: 40, height: 40, borderRadius: '50%' }} />
+                  <div style={{ flex: 1 }}>
+                    <textarea 
+                      placeholder="What's on your mind? Share your animal sanctuary experiences, donations, or thoughts..."
+                      style={{
+                        width: '100%',
+                        minHeight: 80,
+                        border: 'none',
+                        background: 'transparent',
+                        fontSize: 16,
+                        resize: 'vertical',
+                        outline: 'none',
+                        fontFamily: 'inherit'
+                      }}
+                    />
+                  </div>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div style={{ display: 'flex', gap: 12 }}>
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 18 }} title="Add photo">📸</button>
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 18 }} title="Add video">🎥</button>
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 18 }} title="Tag animal">🐾</button>
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 18 }} title="Add location">📍</button>
+                  </div>
+                  <button className="button" style={{ padding: '8px 20px', fontSize: 14 }}>Post</button>
+                </div>
+              </div>
+              
               <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
                 {/* Timeline posts similar to animal profiles */}
                 <div style={{ border: '1px solid var(--gray)', borderRadius: 12, padding: 20 }}>

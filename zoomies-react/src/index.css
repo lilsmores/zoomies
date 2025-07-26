@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Calistoga&family=Poppins:wght@400;500;600&display=swap');
 
+/* Ensure no unexpected scaling */
+html, body {
+  transform: none !important;
+  zoom: 1 !important;
+  -webkit-transform: none !important;
+  -moz-transform: none !important;
+  -ms-transform: none !important;
+}
+
 :root {
   --background: #F8F6FF;
   --card: #FFFFFF;

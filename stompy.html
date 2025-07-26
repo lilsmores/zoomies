@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.1" />
   <title>Ambassador: Stompy</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Calistoga&display=swap" rel="stylesheet">
   <style>
@@ -16,7 +16,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
+      padding: 0.5rem 2rem;
       background-color: #111;
       border-bottom: 1px solid #333;
     }
@@ -25,11 +25,11 @@
       align-items: center;
     }
     header img {
-      height: 150px;
+      height: 110px;
     }
     header h2 {
       font-family: 'Calistoga', serif;
-      font-size: 3rem;
+      font-size: 2.5rem;
       margin-left: 0.75rem;
     }
     nav {
@@ -43,10 +43,58 @@
       font-weight: 600;
       border-radius: 999px;
       padding: 0.5rem 1rem;
+      font-size: 1.1rem;
     }
     nav a.login::before {
       content: "👤";
       margin-right: 0.5rem;
+    }
+    
+    nav a.login {
+      background-color: #ffb6c1;
+      color: #fff;         /* Make the text white */
+      font-weight: 600;
+      padding: 0.4rem 0.9rem;
+      font-size: 1.05rem;
+    }
+    
+    nav a.login:hover {
+      background-color: #ff69b4;
+      color: #fff;         /* Keep the text white on hover */
+    }
+    
+    .search-container {
+      display: flex;
+      align-items: center;
+      margin-left: 1.5rem;
+    }
+    
+    .search-input {
+      background-color: #333;
+      border: none;
+      border-radius: 999px 0 0 999px;
+      padding: 0.5rem 1rem;
+      color: #fff;
+      font-size: 0.9rem;
+      width: 200px;
+    }
+    
+    .search-input::placeholder {
+      color: #999;
+    }
+    
+    .search-button {
+      background-color: #333;
+      border: none;
+      border-radius: 0 999px 999px 0;
+      padding: 0.5rem 0.75rem;
+      color: #fff;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    
+    .search-button:hover {
+      background-color: #444;
     }
     section, .tabs, .content > div > div {
       margin-bottom: 2rem;
@@ -54,7 +102,7 @@
     .cover {
       position: relative;
       height: 250px;
-      background: url('https://placehold.co/1200x250/333/aaa') center/cover no-repeat;
+      background: var(--header-background, url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=250&fit=crop&crop=center')) center/cover no-repeat;
     }
     .profile-img {
       position: absolute;
@@ -65,6 +113,7 @@
       width: 100px;
       height: 100px;
       object-fit: cover;
+      content: var(--profile-image, url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=center'));
     }
     .profile-info {
       margin-top: 60px;
@@ -82,7 +131,7 @@
       color: #ccc;
     }
     .profile-actions button {
-      background-color: #fc97ca;
+      background-color: #ffb6c1;
       color: #fff;
       border: none;
       padding: 0.5rem 1rem;
@@ -106,6 +155,12 @@
     }
     .tabs a:hover,
     .tabs a:focus {
+      color: #ff69b4;
+      border-bottom: 2px solid #ff69b4;
+      background-color: transparent;
+    }
+    
+    .tabs a.active {
       color: #ff69b4;
       border-bottom: 2px solid #ff69b4;
       background-color: transparent;
@@ -152,11 +207,22 @@
       font-weight: 600;
       text-decoration: none;
     }
+    .status-update {
+      background-color: #1a1a1a;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(255, 105, 180, 0.2);
+    }
+    
     .status-box {
-      background-color: #222;
+      background-color: #333;
       padding: 1rem;
       border-radius: 12px;
       margin-bottom: 1rem;
+    }
+    
+    .status .status-box {
+      background-color: #222;
     }
     .post {
       background-color: #1a1a1a;
@@ -174,28 +240,205 @@
       display: flex;
       gap: 0.5rem;
       margin-top: 0.75rem;
+      justify-content: flex-end;
     }
     .post .comment-box {
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       display: flex;
+      justify-content: flex-end;
     }
     .post .comment-box input {
-      flex: 1;
+      width: 200px;
       padding: 0.5rem;
       border-radius: 6px 0 0 6px;
       border: none;
     }
-    .post .comment-box button {
-      border-radius: 0 6px 6px 0;
+    
+    .status .reactions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      justify-content: flex-end;
     }
-    .button {
-      background-color: #fc97ca;
+    .status .comment-box {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .status .comment-box input {
+      width: 200px;
+      padding: 0.5rem;
+      border-radius: 6px 0 0 6px;
+      border: none;
+    }
+    
+    .status .comment-box button {
+      background-color: #333;
       color: #fff;
       border: none;
-      border-radius: 999px;
+      border-radius: 0 6px 6px 0;
       padding: 0.5rem 1rem;
       font-weight: 600;
       cursor: pointer;
+    }
+    
+    .status .comment-box button:hover {
+      background-color: #444;
+    }
+    .post .comment-box button {
+      border-radius: 0 6px 6px 0;
+    }
+    /* General 3D button style for .button and .donation-option */
+.button,
+.donation-option {
+  background: linear-gradient(180deg, #ffb6c1 0%, #ff69b4 100%);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(255, 182, 193, 0.25), 0 2px 4px rgba(0,0,0,0.12);
+  transition: 
+    box-shadow 0.15s cubic-bezier(.4,0,.2,1),
+    transform 0.1s cubic-bezier(.4,0,.2,1),
+    background 0.2s;
+  font-size: 1rem;
+  position: relative;
+}
+
+.button:active,
+.donation-option:active {
+  box-shadow: 0 2px 6px rgba(255, 182, 193, 0.18), 0 1px 2px rgba(0,0,0,0.18);
+  transform: translateY(2px) scale(0.97);
+  background: linear-gradient(180deg, #ff69b4 0%, #ffb6c1 100%);
+}
+
+/* Emoji reaction buttons (inside .reactions) */
+.reactions .button {
+  padding: 0.5rem 0.9rem;
+  font-size: 1.2rem;
+  background: linear-gradient(180deg, #222 0%, #444 100%);
+  color: #ffb6c1;
+  box-shadow: 0 2px 8px rgba(255, 182, 193, 0.12), 0 1px 2px rgba(0,0,0,0.18);
+  border: none;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+  transition: 
+    box-shadow 0.15s cubic-bezier(.4,0,.2,1),
+    transform 0.1s cubic-bezier(.4,0,.2,1),
+    background 0.2s;
+}
+
+.reactions .button:hover,
+.reactions .button:focus {
+  background: linear-gradient(180deg, #333 0%, #ffb6c1 100%);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(255, 182, 193, 0.25), 0 2px 4px rgba(0,0,0,0.12);
+}
+
+.reactions .button:active {
+  background: linear-gradient(180deg, #ffb6c1 0%, #ff69b4 100%);
+  color: #fff;
+  transform: translateY(2px) scale(0.97);
+  box-shadow: 0 2px 6px rgba(255, 182, 193, 0.18), 0 1px 2px rgba(0,0,0,0.18);
+}
+    
+    .donation-bar {
+      background-color: #1a1a1a;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #ffb6c1;
+    }
+    
+    .donation-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .donation-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    
+    .donation-text {
+      font-weight: 600;
+      color: #fff;
+    }
+    
+    .donation-percentage {
+      color: #ff69b4;
+      font-weight: 600;
+    }
+    
+    .donation-progress {
+      background-color: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 12px;
+    }
+    
+    .donation-progress-bar {
+      background-color: #ff69b4;
+      height: 100%;
+      width: 41%;
+      transition: width 0.3s ease;
+    }
+    
+    .donation-buttons {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      justify-content: center;
+    }
+    
+    .donation-option {
+      background-color: #ffb6c1;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.9rem;
+    }
+    
+    .donation-option:hover {
+      background-color: #ff69b4;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 182, 193, 0.4);
+    }
+    
+    .donation-option.custom {
+      background-color: transparent;
+      border: 2px solid #ffb6c1;
+      color: #fff; /* Make text white */
+    }
+    
+    .donation-option.custom:hover {
+      background-color: #ffb6c1;
+      color: #fff;
+    }
+    
+    .comment-item {
+      background-color: #222;
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .comment-item p {
+      margin: 0;
+    }
+    
+    .leaderboard-list li {
+      background-color: #222;
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      list-style: decimal;
     }
   </style>
 </head>
@@ -209,12 +452,16 @@
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="ambassadors.html">Ambassadors</a>
-      <a href="login.html" class="login">Login</a>
+      <div class="search-container">
+        <input type="text" placeholder="Search..." class="search-input">
+        <button class="search-button">🔍</button>
+      </div>
+      <a href="login.html" class="login button">Login</a>
     </nav>
   </header>
 
   <section class="cover">
-    <img src="https://placehold.co/100x100?text=🐐" alt="Stompy the Goat" class="profile-img" />
+    <img src="var(--profile-image, https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=center)" alt="Stompy the Goat" class="profile-img" />
   </section>
 
   <section class="profile-info">
@@ -223,13 +470,31 @@
       <p>Alveus Sanctuary • Loves headbutts and snacks</p>
     </div>
     <div class="profile-actions">
-      <button>💗 Follow</button>
-      <button>🎁 Donate</button>
+      <button class="button">💗 Follow</button>
+      <button class="button">🎁 Donate</button>
     </div>
   </section>
 
+  <div class="donation-bar">
+    <div class="donation-content">
+      <div class="donation-info">
+        <span class="donation-text">$815 raised of $2,000 goal</span>
+        <span class="donation-percentage">41%</span>
+      </div>
+      <div class="donation-progress">
+        <div class="donation-progress-bar"></div>
+      </div>
+      <div class="donation-buttons">
+        <button class="donation-option">$10</button>
+        <button class="donation-option">$25</button>
+        <button class="donation-option">$50</button>
+        <button class="donation-option custom">Custom</button>
+      </div>
+    </div>
+  </div>
+
   <div class="tabs">
-    <a href="#">Timeline</a>
+    <a href="#" class="active">Timeline</a>
     <a href="#">About</a>
     <a href="#">Donations</a>
     <a href="#">Photos</a>
@@ -239,23 +504,16 @@
   <div class="content">
     <div>
       <div class="card">
-        <h2>About Stompy</h2>
+        <h2>About Stompy </h2>
         <p>Hi I’m Stompy and I’m an ostrich blah blah I was found in blah blah blah. My favorite food is blah blah bugs.</p>
         <p><strong>Joined:</strong> August 2023</p>
         <button class="button">Learn More</button>
       </div>
 
-      <div class="card">
-        <h2>Support Stompy</h2>
-        <p>$815 raised of $2,000 goal</p>
-        <div class="progress">
-          <div class="progress-bar"></div>
-        </div>
-        <button class="button" style="margin-top: 1rem;">Donate</button>
-      </div>
+
 
       <div class="gallery">
-        <h2>Photo Gallery ♥</h2>
+        <h2>Photo Gallery </h2>
         <div class="photo-grid">
           <img src="https://placehold.co/150x100?text=1" alt="Stompy 1" />
           <img src="https://placehold.co/150x100?text=2" alt="Stompy 2" />
@@ -265,10 +523,16 @@
       </div>
 
       <div class="comments">
-        <h2>Comments ✧</h2>
-        <p><strong>Clara:</strong> Stunned by Stompy’s beauty! ♥</p>
-        <p><strong>James:</strong> 👑 1 ♥</p>
-        <p><strong>Emily:</strong> You go, Stomp!</p>
+        <h2>Comments </h2>
+        <div class="comment-item">
+          <p><strong>Clara:</strong> Stunned by Stompy's beauty! ♥</p>
+        </div>
+        <div class="comment-item">
+          <p><strong>James:</strong> 👑 1 ♥</p>
+        </div>
+        <div class="comment-item">
+          <p><strong>Emily:</strong> You go, Stomp!</p>
+        </div>
         <div style="margin-top: 1rem; display: flex;">
           <input type="text" placeholder="Add a comment..." style="flex: 1; padding: 0.5rem; border-radius: 6px 0 0 6px; border: none;">
           <button class="button" style="border-radius: 0 6px 6px 0;">Post</button>
@@ -276,8 +540,8 @@
       </div>
 
       <div class="leaderboard">
-        <h2>🏆 Top Supporters</h2>
-        <ol>
+        <h2> Top Supporters 🏆</h2>
+        <ol class="leaderboard-list">
           <li><strong>Pawfect Coffee Co.</strong> – $2,000</li>
           <li><strong>Linda S.</strong> – $1,500</li>
           <li><strong>CryptoCat DAO</strong> – $1,250</li>
@@ -286,14 +550,14 @@
     </div>
 
     <div>
-      <div class="status">
+      <div class="status-update">
         <h2>🤪 Stompy is feeling: <span style="color:#fc97ca">Silly</span></h2>
         <div class="status-box">Just had a big bowl of insects — thanks Name for the $25 treat!</div>
       </div>
 
       <div class="status">
         <p><strong>🎥 Video - 3 hours ago</strong></p>
-        <img src="https://placehold.co/100x50?text=Video+Placeholder" alt="Video placeholder" style="width: 100%; border-radius: 8px; margin-bottom: 0.75rem;">
+        <img src="https://placehold.co/100x50?text=Video+Placeholder" alt="Video placeholder" style="width: 100%; border-radius: 8px; margin-bottom: 0.25rem;">
         <div class="status-box">Check out Stompy's latest antics in the pasture!</div>
         <div class="reactions">
           <button class="button">👍</button>

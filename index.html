@@ -7,6 +7,362 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zoomies 🐾</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 2rem;
+      background-color: #111;
+      border-bottom: 1px solid #333;
+    }
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      height: 90px;
+    }
+    .brand-name {
+      font-family: 'Calistoga', serif;
+      font-size: 2.2rem;
+      margin-left: 0.75rem;
+      color: #fff;
+    }
+    .main-nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 0.5rem 1rem;
+      font-size: 1.1rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .main-nav a:hover {
+      background: #fc97ca;
+      color: #111;
+    }
+    .hero {
+      text-align: center;
+      padding: 3.5rem 1rem 2.5rem 1rem;
+      background: linear-gradient(180deg, #fc97ca22 0%, #111 100%);
+    }
+    .hero h1 {
+      font-family: 'Calistoga', serif;
+      font-size: 2.7rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: #ffd6e6;
+      margin-bottom: 2rem;
+    }
+    .hero-cta {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta .btn {
+      background: linear-gradient(180deg, #fc97ca 0%, #ff69b4 100%);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 0.9rem 2.2rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(252,151,202,0.18);
+      transition: background 0.2s, transform 0.1s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .hero-cta .btn.secondary {
+      background: #fff;
+      color: #fc97ca;
+      border: 2px solid #fc97ca;
+    }
+    .hero-cta .btn:hover {
+      background: linear-gradient(180deg, #ff69b4 0%, #fc97ca 100%);
+      color: #fff;
+      transform: translateY(-2px) scale(1.03);
+    }
+    .carousel-section {
+      background: #181818;
+      padding: 2.5rem 0 2rem 0;
+    }
+    .carousel-title {
+      text-align: center;
+      font-family: 'Calistoga', serif;
+      font-size: 1.7rem;
+      color: #fc97ca;
+      margin-bottom: 1.5rem;
+    }
+    .carousel {
+      display: flex;
+      gap: 2rem;
+      overflow-x: auto;
+      padding: 1rem 2rem;
+      scroll-snap-type: x mandatory;
+    }
+    .carousel-card {
+      background: #222;
+      border-radius: 16px;
+      min-width: 260px;
+      max-width: 260px;
+      box-shadow: 0 2px 8px rgba(252,151,202,0.10);
+      padding: 1.2rem 1rem 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      scroll-snap-align: start;
+      position: relative;
+    }
+    .carousel-card img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fc97ca;
+      margin-bottom: 0.7rem;
+    }
+    .carousel-card .name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.2rem;
+      text-align: center;
+    }
+    .carousel-card .species {
+      color: #fc97ca;
+      font-size: 0.98rem;
+      margin-bottom: 0.2rem;
+    }
+    .carousel-card .sanctuary {
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+    .carousel-card .supporters {
+      color: #ffd6e6;
+      font-size: 0.93rem;
+      margin-bottom: 0.7rem;
+    }
+    .carousel-card .donate-btn {
+      background: linear-gradient(180deg, #fc97ca 0%, #ff69b4 100%);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 0.5rem 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+      transition: background 0.2s;
+    }
+    .carousel-card .donate-btn:hover {
+      background: linear-gradient(180deg, #ff69b4 0%, #fc97ca 100%);
+    }
+    .carousel-card .view-profile {
+      color: #fc97ca;
+      text-decoration: none;
+      font-size: 0.98rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .carousel-card .view-profile:hover {
+      color: #ff69b4;
+      text-decoration: underline;
+    }
+    .why-section {
+      background: #111;
+      padding: 2.5rem 0 2rem 0;
+      text-align: center;
+    }
+    .why-title {
+      font-family: 'Calistoga', serif;
+      font-size: 1.5rem;
+      color: #fc97ca;
+      margin-bottom: 1.2rem;
+    }
+    .why-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .why-card {
+      background: #1a1a1a;
+      border-radius: 14px;
+      padding: 1.2rem 1.5rem;
+      min-width: 220px;
+      max-width: 260px;
+      box-shadow: 0 2px 8px rgba(252,151,202,0.10);
+      text-align: left;
+      flex: 1 1 220px;
+    }
+    .why-card h3 {
+      color: #fc97ca;
+      font-size: 1.1rem;
+      margin: 0 0 0.3rem 0;
+      font-family: 'Inter', sans-serif;
+    }
+    .why-card p {
+      color: #ccc;
+      font-size: 0.98rem;
+      margin: 0;
+    }
+    .shoutouts-section {
+      background: #181818;
+      padding: 2.5rem 0 2rem 0;
+    }
+    .shoutouts-title {
+      font-family: 'Calistoga', serif;
+      font-size: 1.5rem;
+      color: #fc97ca;
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+    .shoutouts-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .shoutout-card {
+      background: #1a1a1a;
+      border-radius: 14px;
+      padding: 1.2rem 1.5rem;
+      min-width: 220px;
+      max-width: 260px;
+      box-shadow: 0 2px 8px rgba(252,151,202,0.10);
+      text-align: left;
+      flex: 1 1 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .shoutout-card .badge {
+      background: #fc97ca;
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.2rem 0.8rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .shoutout-card .user-pic {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #fc97ca;
+      margin-bottom: 0.5rem;
+    }
+    .shoutout-card .user-name {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    .shoutout-card .shoutout {
+      color: #ffd6e6;
+      font-size: 0.98rem;
+      text-align: center;
+    }
+    .testimonials-section {
+      background: #111;
+      padding: 2.5rem 0 2rem 0;
+    }
+    .testimonials-title {
+      font-family: 'Calistoga', serif;
+      font-size: 1.5rem;
+      color: #fc97ca;
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+    .testimonials-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-card {
+      background: #1a1a1a;
+      border-radius: 14px;
+      padding: 1.2rem 1.5rem;
+      min-width: 220px;
+      max-width: 320px;
+      box-shadow: 0 2px 8px rgba(252,151,202,0.10);
+      text-align: left;
+      flex: 1 1 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .testimonial-card .testimonial {
+      color: #ffd6e6;
+      font-size: 1.05rem;
+      margin-bottom: 0.7rem;
+      font-style: italic;
+    }
+    .testimonial-card .org {
+      color: #fc97ca;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    .testimonial-card .org-logo {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      margin-bottom: 0.2rem;
+      background: #fff;
+      border-radius: 12px;
+      padding: 0.2rem;
+    }
+    footer {
+      text-align: center;
+      color: #aaa;
+      font-size: 1rem;
+      padding: 2rem 0 1rem 0;
+      background: #111;
+      border-top: 1px solid #333;
+    }
+    @media (max-width: 700px) {
+      .carousel, .shoutouts-grid, .testimonials-grid, .why-features {
+        flex-direction: column;
+        gap: 1.2rem;
+        padding: 0 0.5rem;
+      }
+      .carousel-card, .shoutout-card, .testimonial-card, .why-card {
+        min-width: 0;
+        max-width: 100%;
+      }
+      .site-header, .main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .main-nav a {
+        margin-left: 0;
+        margin-right: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -25,42 +381,116 @@
     </nav>
   </header>
 
-  <!-- Main Content -->
-  <main>
-    <section class="hero">
-      <h1>Give animals the Zoomies — IRL & online!</h1>
-      <p>
-        Follow sanctuary ambassadors, join the community, and power their futures
-        with transparent support.
-      </p>
-      <a class="btn" href="ambassadors.html">Meet the Animals</a>
-    </section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>The Social Platform for Animal Lovers</h1>
+    <p>Follow sanctuary ambassadors, join the community, and power their futures with transparent support.</p>
+    <div class="hero-cta">
+      <a class="btn" href="ambassadors.html">Support an Animal</a>
+      <a class="btn secondary" href="community.html">Join the Community</a>
+    </div>
+  </section>
 
-    <section class="features">
-      <div class="card">
-        <h2>🐾 Animal Profiles</h2>
-        <p>
-         meow moew :3
-        </p>
+  <!-- Carousel Section -->
+  <section class="carousel-section">
+    <div class="carousel-title">Trending Ambassadors</div>
+    <div class="carousel">
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=200&h=200&fit=crop&crop=center" alt="Stompy the Goat">
+        <div class="name">Stompy the Goat</div>
+        <div class="species">Goat</div>
+        <div class="sanctuary">Alveus Sanctuary</div>
+        <div class="supporters">$815 raised • 41 supporters</div>
+        <button class="donate-btn">Donate</button>
+        <a class="view-profile" href="stompy.html">View Profile →</a>
       </div>
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?w=200&h=200&fit=crop&crop=center" alt="Daisy the Deer">
+        <div class="name">Daisy the Deer</div>
+        <div class="species">Deer</div>
+        <div class="sanctuary">Wildlife Rescue</div>
+        <div class="supporters">$1,200 raised • 30 supporters</div>
+        <button class="donate-btn">Donate</button>
+        <a class="view-profile" href="#">View Profile →</a>
+      </div>
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=200&h=200&fit=crop&crop=center" alt="Luna the Owl">
+        <div class="name">Luna the Owl</div>
+        <div class="species">Owl</div>
+        <div class="sanctuary">Alveus Sanctuary</div>
+        <div class="supporters">$500 raised • 20 supporters</div>
+        <button class="donate-btn">Donate</button>
+        <a class="view-profile" href="#">View Profile →</a>
+      </div>
+      <!-- Add more carousel-cards as needed -->
+    </div>
+  </section>
 
-      <div class="card">
-        <h2>📈 Fundraising Made Simple</h2>
-        <p>
-          Sanctuaries use Zoomies to track donations, launch campaigns,
-          and engage donors all in one dashboard
-        </p>
+  <!-- Why Zoomies Section -->
+  <section class="why-section">
+    <div class="why-title">Why Zoomies?</div>
+    <div class="why-features">
+      <div class="why-card">
+        <h3>Transparent Donations</h3>
+        <p>Every dollar goes directly to the animals and sanctuaries you support. Track your impact in real time.</p>
       </div>
+      <div class="why-card">
+        <h3>Supporter Engagement</h3>
+        <p>Earn badges, join challenges, and connect with a passionate community of animal lovers.</p>
+      </div>
+      <div class="why-card">
+        <h3>Fundraising Tools</h3>
+        <p>Sanctuaries and rescues get modern tools to launch campaigns, manage donors, and grow their impact.</p>
+      </div>
+    </div>
+  </section>
 
-      <div class="card">
-        <h2>🌍 Community First</h2>
-        <p>
-          Forums, livestreams, and challenges connect animal lovers worldwide weee
-          Share care tips, rescue stories, and more :p
-        </p>
+  <!-- Community Shoutouts Section -->
+  <section class="shoutouts-section">
+    <div class="shoutouts-title">Community Shoutouts</div>
+    <div class="shoutouts-grid">
+      <div class="shoutout-card">
+        <span class="badge">Top Supporter</span>
+        <img class="user-pic" src="https://randomuser.me/api/portraits/women/44.jpg" alt="User Pic">
+        <div class="user-name">Linda S.</div>
+        <div class="shoutout">"So proud to support Stompy and the sanctuary!"</div>
       </div>
-    </section>
-  </main>
+      <div class="shoutout-card">
+        <span class="badge">Badge Earned</span>
+        <img class="user-pic" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Pic">
+        <div class="user-name">CryptoCat DAO</div>
+        <div class="shoutout">"We hit our fundraising goal! Go team!"</div>
+      </div>
+      <div class="shoutout-card">
+        <span class="badge">Pet Pic</span>
+        <img class="user-pic" src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=100&h=100&fit=crop&crop=center" alt="Pet Pic">
+        <div class="user-name">Clara</div>
+        <div class="shoutout">"Meet my rescue pup, Luna!"</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials & Logos Section -->
+  <section class="testimonials-section">
+    <div class="testimonials-title">What Sanctuaries & Brands Say</div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial">"Zoomies made it so easy to connect with new supporters and keep our animals thriving!"</div>
+        <div class="org">Alveus Sanctuary</div>
+        <img class="org-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Alveus_Sanctuary_logo.png/120px-Alveus_Sanctuary_logo.png" alt="Alveus Logo">
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial">"Our rescue's fundraising doubled after joining Zoomies. The community is amazing!"</div>
+        <div class="org">Wildlife Rescue</div>
+        <img class="org-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Wildlife_Rescue_logo.png/120px-Wildlife_Rescue_logo.png" alt="Wildlife Rescue Logo">
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial">"We love supporting Zoomies' mission and the animals!"</div>
+        <div class="org">Pawfect Coffee Co.</div>
+        <img class="org-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Coffee_Brand_logo.png/120px-Coffee_Brand_logo.png" alt="Coffee Brand Logo">
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer>

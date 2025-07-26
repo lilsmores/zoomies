@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.1" />
+  <title>Ambassador: Stompy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Calistoga&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 2rem;
+      background-color: #111;
+      border-bottom: 1px solid #333;
+    }
+    header .branding {
+      display: flex;
+      align-items: center;
+    }
+    header img {
+      height: 110px;
+    }
+    header h2 {
+      font-family: 'Calistoga', serif;
+      font-size: 2.5rem;
+      margin-left: 0.75rem;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 0.5rem 1rem;
+      font-size: 1.1rem;
+    }
+    nav a.login::before {
+      content: "👤";
+      margin-right: 0.5rem;
+    }
+    
+    nav a.login {
+      background-color: #fc97ca;
+      color: #fff;         /* Make the text white */
+      font-weight: 600;
+      padding: 0.4rem 0.9rem;
+      font-size: 1.05rem;
+    }
+    
+    nav a.login:hover {
+      background-color: #ff69b4;
+      color: #fff;         /* Keep the text white on hover */
+    }
+    
+    .search-container {
+      display: flex;
+      align-items: center;
+      margin-left: 1.5rem;
+    }
+    
+    .search-input {
+      background-color: #333;
+      border: none;
+      border-radius: 999px 0 0 999px;
+      padding: 0.5rem 1rem;
+      color: #fff;
+      font-size: 0.9rem;
+      width: 200px;
+    }
+    
+    .search-input::placeholder {
+      color: #999;
+    }
+    
+    .search-button {
+      background-color: #333;
+      border: none;
+      border-radius: 0 999px 999px 0;
+      padding: 0.5rem 0.75rem;
+      color: #fff;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    
+    .search-button:hover {
+      background-color: #444;
+    }
+    section, .tabs, .content > div > div {
+      margin-bottom: 2rem;
+    }
+    .cover {
+      position: relative;
+      height: 250px;
+      background: var(--header-background, url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=250&fit=crop&crop=center')) center/cover no-repeat;
+    }
+    .profile-img {
+      position: absolute;
+      bottom: -50px;
+      left: 2rem;
+      border: 4px solid #000;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      content: var(--profile-image, url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=center'));
+    }
+    .profile-info {
+      margin-top: 60px;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .profile-info h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    .profile-info p {
+      margin: 0.25rem 0;
+      color: #ccc;
+    }
+    .profile-actions button {
+      background-color: #fc97ca;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin-left: 0.5rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #333;
+      margin-top: 1rem;
+      padding: 0 2rem;
+    }
+    .tabs a {
+      margin-right: 2rem;
+      text-decoration: none;
+      color: #fff;
+      padding: 0.75rem 1rem;
+      border-bottom: 2px solid transparent;
+    }
+    .tabs a:hover,
+    .tabs a:focus {
+      color: #ff69b4;
+      border-bottom: 2px solid #ff69b4;
+      background-color: transparent;
+    }
+    
+    .tabs a.active {
+      color: #ff69b4;
+      border-bottom: 2px solid #ff69b4;
+      background-color: transparent;
+    }
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+      padding: 2rem;
+    }
+    .card, .gallery, .status, .comments, .leaderboard {
+      background-color: #1a1a1a;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(255, 105, 180, 0.2);
+    }
+    .progress {
+      background-color: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 10px;
+      margin-top: 0.5rem;
+    }
+    .progress-bar {
+      background-color: #fc97ca;
+      height: 100%;
+      width: 40%;
+    }
+    .gallery .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+    .gallery img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    .gallery a {
+      display: block;
+      margin-top: 0.75rem;
+      color: #fc97ca;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .status-update {
+      background-color: #1a1a1a;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(255, 105, 180, 0.2);
+      margin-bottom: 0.4rem;
+    }
+    
+    .status-box {
+      background-color: #333;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+    
+    .status .status-box {
+      background-color: #222;
+    }
+    .post {
+      background-color: #1a1a1a;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .post p {
+      margin: 0.5rem 0;
+      background-color: #222;
+      padding: 0.75rem;
+      border-radius: 8px;
+    }
+    .post .reactions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      justify-content: flex-end;
+    }
+    .post .comment-box {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .post .comment-box input {
+      width: 200px;
+      padding: 0.5rem;
+      border-radius: 6px 0 0 6px;
+      border: none;
+    }
+    
+    .status .reactions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      justify-content: flex-end;
+    }
+    .status .comment-box {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .status .comment-box input {
+      width: 200px;
+      padding: 0.5rem;
+      border-radius: 6px 0 0 6px;
+      border: none;
+    }
+    
+    .status .comment-box button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 0 6px 6px 0;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    
+    .status .comment-box button:hover {
+      background-color: #444;
+    }
+    .post .comment-box button {
+      border-radius: 0 6px 6px 0;
+    }
+    /* General 3D button style for .button and .donation-option */
+.button,
+.donation-option {
+  background: linear-gradient(180deg, #fc97ca 0%, #ff69b4 100%);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(252, 151, 202, 0.25), 0 2px 4px rgba(0,0,0,0.12);
+  transition: 
+    box-shadow 0.15s cubic-bezier(.4,0,.2,1),
+    transform 0.1s cubic-bezier(.4,0,.2,1),
+    background 0.2s;
+  font-size: 1rem;
+  position: relative;
+}
+
+.button:active,
+.donation-option:active {
+  box-shadow: 0 2px 6px rgba(252, 151, 202, 0.18), 0 1px 2px rgba(0,0,0,0.18);
+  transform: translateY(2px) scale(0.97);
+  background: linear-gradient(180deg, #ff69b4 0%, #fc97ca 100%);
+}
+
+/* Emoji reaction buttons (inside .reactions) */
+.reactions .button {
+  padding: 0.5rem 0.9rem;
+  font-size: 1.2rem;
+  background: linear-gradient(180deg, #222 0%, #444 100%);
+  color: #fc97ca;
+  box-shadow: 0 2px 8px rgba(252, 151, 202, 0.12), 0 1px 2px rgba(0,0,0,0.18);
+  border: none;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+  transition: 
+    box-shadow 0.15s cubic-bezier(.4,0,.2,1),
+    transform 0.1s cubic-bezier(.4,0,.2,1),
+    background 0.2s;
+}
+
+.reactions .button:hover,
+.reactions .button:focus {
+  background: linear-gradient(180deg, #333 0%, #fc97ca 100%);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(252, 151, 202, 0.25), 0 2px 4px rgba(0,0,0,0.12);
+}
+
+.reactions .button:active {
+  background: linear-gradient(180deg, #fc97ca 0%, #ff69b4 100%);
+  color: #fff;
+  transform: translateY(2px) scale(0.97);
+  box-shadow: 0 2px 6px rgba(252, 151, 202, 0.18), 0 1px 2px rgba(0,0,0,0.18);
+}
+    
+    .donation-bar {
+      background-color: #1a1a1a;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #333;
+    }
+    
+    .donation-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .donation-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    
+    .donation-text {
+      font-weight: 600;
+      color: #fff;
+    }
+    
+    .donation-percentage {
+      color: #fc97ca;
+      font-weight: 600;
+    }
+    
+    .donation-progress {
+      background-color: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 12px;
+    }
+    
+    .donation-progress-bar {
+      background-color: #fc97ca;
+      height: 100%;
+      width: 41%;
+      transition: width 0.3s ease;
+    }
+    
+    .donation-buttons {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      justify-content: center;
+    }
+    
+    .donation-option {
+      background-color: #fc97ca;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.9rem;
+    }
+    
+    .donation-option:hover {
+      background-color: #ff69b4;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(252, 151, 202, 0.4);
+    }
+    
+    .donation-option.custom {
+      background-color: transparent;
+      border: 2px solid #fc97ca;
+      color: #fff; /* Make text white */
+    }
+    
+    .donation-option.custom:hover {
+      background-color: #fc97ca;
+      color: #fff;
+    }
+    
+    .comment-item {
+      background-color: #222;
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .comment-item p {
+      margin: 0;
+    }
+    
+    .leaderboard-list li {
+      background-color: #222;
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      list-style: decimal;
+    }
+    .edit-profile-pic {
+      position: absolute;
+      bottom: 10px;
+      left: 120px;
+      background: linear-gradient(180deg, #222 0%, #444 100%);
+      color: #fc97ca;
+      border: none;
+      border-radius: 50%;
+      width: 1.9em;
+      height: 1.9em;
+      font-size: 1.1em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(252,151,202,0.12), 0 1px 2px rgba(0,0,0,0.18);
+      transition: background 0.2s, color 0.2s;
+      padding: 0;
+      z-index: 2;
+    }
+    .edit-profile-pic:hover {
+      background: linear-gradient(180deg, #333 0%, #fc97ca 100%);
+      color: #fff;
+    }
+    .edit-profile-pic .edit-emoji {
+      font-size: 1rem; /* or 0.9rem for even smaller */
+      line-height: 1;
+      display: block;
+    }
+    .status-bar {
+      display: flex;
+      gap: 0;
+      margin-bottom: 0.25rem;
+      align-items: stretch;
+    }
+    .status-bar textarea {
+      flex: 1;
+      padding: 0.9rem 1rem;
+      border: none;
+      border-radius: 18px 0 0 18px;
+      background: #222;
+      color: #fff;
+      font-size: 1.1rem;
+      min-height: 3em;
+      max-height: 10em;
+      resize: vertical;
+      box-sizing: border-box;
+      line-height: 1.4;
+    }
+    .status-bar textarea::placeholder {
+      color: #aaa;
+    }
+    .status-bar .button {
+      border-radius: 0 18px 18px 0;
+      padding: 0 1.5rem;
+      font-size: 1.1rem;
+      margin: 0;
+      box-shadow: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #fc97ca 0%, #ff69b4 100%);
+      color: #fff;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .status-bar .button:hover {
+      background: linear-gradient(180deg, #ff69b4 0%, #fc97ca 100%);
+      transform: translateY(-1px);
+    }
+
+/* Edit Profile button in header */
+.edit-profile-btn {
+  margin-left: 1rem;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+}
+
+/* Modal styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #1a1a1a;
+  border-radius: 16px;
+  padding: 0;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #333;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #fff;
+}
+
+.close-modal-btn {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.close-modal-btn:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.edit-section {
+  margin-bottom: 2rem;
+}
+
+.edit-section h3 {
+  margin: 0 0 1rem 0;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.image-upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.preview-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #333;
+}
+
+.header-preview {
+  width: 200px;
+  height: 100px;
+  border-radius: 12px;
+  border-radius: 50%;
+}
+
+.upload-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-top: 1px solid #333;
+}
+
+.cancel-btn {
+  background: linear-gradient(180deg, #222 0%, #444 100%);
+  color: #fc97ca;
+}
+
+.cancel-btn:hover {
+  background: linear-gradient(180deg, #333 0%, #fc97ca 100%);
+  color: #fff;
+}
+
+.attach-image-label {
+  display: flex;
+  align-items: stretch;
+  cursor: pointer;
+  margin: 0;
+}
+
+.attach-image-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  min-width: 48px;
+  background: linear-gradient(180deg, #222 0%, #444 100%);
+  color: #fc97ca;
+  font-size: 1.3em;
+  border: none;
+  border-radius: 0;
+  transition: all 0.2s ease;
+  box-shadow: none;
+  padding: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.attach-image-label:hover .attach-image-btn {
+  background: linear-gradient(180deg, #333 0%, #fc97ca 100%);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.status-header .edit-status-btn {
+  background: linear-gradient(180deg, #222 0%, #444 100%);
+  color: #fc97ca;
+  border: none;
+  border-radius: 50%;
+  width: 1.9em;
+  height: 1.9em;
+  font-size: 1.1em;
+  margin-left: 0.5em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(252,151,202,0.12), 0 1px 2px rgba(0,0,0,0.18);
+  transition: background 0.2s, color 0.2s;
+  padding: 0;
+}
+
+.status-header .edit-status-btn:hover {
+  background: linear-gradient(180deg, #333 0%, #fc97ca 100%);
+  color: #fff;
+}
+
+.edit-status-btn .edit-emoji {
+  font-size: 1rem;
+  line-height: 1;
+  display: block;
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7em;
+  font-size: 1.3rem; /* Made the text line larger */
+}
+
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+}
+
+.status-text-line {
+  font-size: 1.3rem; /* Made the feeling text larger */
+  font-weight: 500;
+}
+
+.status-header .edit-status-btn {
+  background: linear-gradient(180deg, #222 0%, #444 100%);
+  color: #fc97ca;
+  border: none;
+  border-radius: 50%;
+  width: 2em; /* Slightly larger button */
+  height: 2em;
+  font-size: 1.1em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(252,151,202,0.12), 0 1px 2px rgba(0,0,0,0.18);
+  transition: background 0.2s, color 0.2s;
+  padding: 0;
+  margin-left: auto; /* Push to the right */
+}
+
+.status-header .edit-status-btn:hover {
+  background: linear-gradient(180deg, #333 0%, #fc97ca 100%);
+  color: #fff;
+}
+
+.edit-status-btn .edit-emoji {
+  font-size: 1rem;
+  line-height: 1;
+  display: block;
+}
+
+.post-footer {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.view-comments-link {
+  color: #fc97ca;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  margin-bottom: 0.5rem; /* Add some bottom margin to align with the comment box */
+}
+
+.view-comments-link:hover {
+  color: #ff69b4;
+  text-decoration: underline;
+}
+
+.comment-section {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 0.25rem; /* Reduced from 0.75rem to 0.25rem */
+}
+
+.comment-box {
+  display: flex;
+  justify-content: flex-end;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="branding">
+      <img src="Logo.png" alt="Zoomies Logo" />
+      <h2 style="color: #fff;">Zoomies</h2>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="ambassadors.html">Ambassadors</a>
+      <div class="search-container">
+        <input type="text" placeholder="Search..." class="search-input">
+        <button class="search-button">🔍</button>
+      </div>
+      <a href="login.html" class="login button">Alveus</a>
+      <a href="settings.html" class="settings-btn" title="Settings">⚙️</a>
+    </nav>
+  </header>
+
+  <section class="cover">
+    <img src="var(--profile-image, https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=center)" alt="Sanctuary Profile" class="profile-img" />
+  </section>
+
+  <section class="profile-info">
+    <div>
+      <h1>Stompy the Goat</h1>
+      <p>Alveus Sanctuary • Loves headbutts and snacks</p>
+    </div>
+    <div class="profile-actions">
+      <button class="edit-profile-btn button">✏️ Edit Profile</button>
+    </div>
+  </section>
+
+  <div class="donation-bar">
+    <div class="donation-content">
+      <div class="donation-info">
+        <span class="donation-text">$815 raised of $2,000 goal</span>
+        <span class="donation-percentage">41%</span>
+      </div>
+      <div class="donation-progress">
+        <div class="donation-progress-bar"></div>
+      </div>
+      <div class="donation-buttons">
+        <button class="donation-option">$10</button>
+        <button class="donation-option">$25</button>
+        <button class="donation-option">$50</button>
+        <button class="donation-option custom">Custom</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <a href="#" class="active">Timeline</a>
+    <a href="#">About</a>
+    <a href="#">Donations</a>
+    <a href="#">Photos</a>
+    <a href="#">More</a>
+  </div>
+
+  <div class="content">
+    <div>
+      <div class="card">
+        <h2>About Stompy </h2>
+        <p>Hi I’m Stompy and I’m an ostrich blah blah I was found in blah blah blah. My favorite food is blah blah bugs.</p>
+        <p><strong>Joined:</strong> August 2023</p>
+        <button class="button">Learn More</button>
+      </div>
+
+
+
+      <div class="gallery">
+        <h2>Photo Gallery </h2>
+        <div class="photo-grid">
+          <img src="https://placehold.co/150x100?text=1" alt="Stompy 1" />
+          <img src="https://placehold.co/150x100?text=2" alt="Stompy 2" />
+          <img src="https://placehold.co/150x100?text=3" alt="Stompy 3" />
+        </div>
+        <a href="#">See all photos</a>
+      </div>
+
+      <div class="comments">
+        <h2>Comments </h2>
+        <div class="comment-item">
+          <p><strong>Clara:</strong> Stunned by Stompy's beauty! ♥</p>
+        </div>
+        <div class="comment-item">
+          <p><strong>James:</strong> 👑 1 ♥</p>
+        </div>
+        <div class="comment-item">
+          <p><strong>Emily:</strong> You go, Stomp!</p>
+        </div>
+        <div style="margin-top: 1rem; display: flex;">
+          <input type="text" placeholder="Add a comment..." style="flex: 1; padding: 0.5rem; border-radius: 6px 0 0 6px; border: none;">
+          <button class="button" style="border-radius: 0 6px 6px 0;">Post</button>
+        </div>
+      </div>
+
+      <div class="leaderboard">
+        <h2>Top Supporters 🏆</h2>
+        <ol class="leaderboard-list">
+          <li><strong>Pawfect Coffee Co.</strong> – $2,000</li>
+          <li><strong>Linda S.</strong> – $1,500</li>
+          <li><strong>CryptoCat DAO</strong> – $1,250</li>
+        </ol>
+      </div>
+    </div>
+
+    <div>
+      <div class="status-update editable-status">
+        <div class="status-header">
+          <div class="status-left">
+            <span class="status-emoji" id="status-emoji">🤪</span>
+            <span class="status-text-line">Stompy is feeling: <span class="status-feeling" id="status-feeling" style="color:#fc97ca;">Silly</span></span>
+          </div>
+          <button class="edit-status-btn" id="edit-status-btn" title="Edit status" type="button">
+            <span class="edit-emoji">✏️</span>
+          </button>
+        </div>
+        <div class="status-box" id="status-text" style="margin-top:1em;">Just had a big bowl of insects — thanks Name for the $25 treat!</div>
+        
+        <!-- Hidden edit form -->
+        <form class="edit-status-form" id="edit-status-form" style="display:none; margin-top:1em;">
+          <input type="text" id="edit-emoji" value="🤪" maxlength="2" style="width:2.5em;text-align:center;font-size:1.5rem;border-radius:50%;border:none;background:#222;color:#fff;">
+          <input type="text" id="edit-feeling" value="Silly" style="font-size:1.2rem;font-weight:600;color:#fc97ca;background:#222;border:none;border-radius:8px;padding:0.2em 0.7em;margin-left:0.3em;">
+          <textarea id="edit-status-text" style="width:100%;background:#333;color:#fff;border:none;border-radius:12px;padding:1em;font-size:1rem;margin-top:0.5em;">Just had a big bowl of insects — thanks Name for the $25 treat!</textarea>
+          <div class="edit-status-actions">
+            <button type="submit" class="button">Save</button>
+            <button type="button" class="button cancel-btn" id="cancel-edit-status">Cancel</button>
+          </div>
+        </form>
+      </div>
+      <div class="status-bar">
+        <textarea
+          id="status-input"
+          placeholder="Share an update with your supporters..."
+          rows="3"
+        ></textarea>
+        <label class="attach-image-label" title="Attach image">
+          <input type="file" accept="image/*" id="status-image-input" style="display:none;">
+          <span class="attach-image-btn">📷</span>
+        </label>
+        <button class="button" id="post-status-btn">Post</button>
+      </div>
+      <div id="status-image-preview" style="margin-top:0.5em;"></div>
+
+      <div class="status">
+        <p><strong>🎥 Video - 3 hours ago</strong></p>
+        <img src="https://placehold.co/100x50?text=Video+Placeholder" alt="Video placeholder" style="width: 100%; border-radius: 8px; margin-bottom: 0.75rem;">
+        <div class="status-box">Check out Stompy's latest antics in the pasture!</div>
+        <div class="reactions">
+          <button class="button">👍</button>
+          <button class="button">😂</button>
+          <button class="button">😍</button>
+          <button class="button">😢</button>
+        </div>
+        <div class="comment-section">
+          <a href="#" class="view-comments-link">View comments</a>
+          <div class="comment-box">
+            <input type="text" placeholder="Add a comment..." />
+            <button class="button">Post</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="status">
+        <p><strong>🩷 Status - 5 hours ago</strong></p>
+        <div class="status-box">Thanks Name for the $255 donation yabababadaddboooo</div>
+        <div class="reactions">
+          <button class="button">👍</button>
+          <button class="button">😂</button>
+          <button class="button">😍</button>
+          <button class="button">😢</button>
+        </div>
+        <div class="comment-section">
+          <a href="#" class="view-comments-link">View comments</a>
+          <div class="comment-box">
+            <input type="text" placeholder="Add a comment..." />
+            <button class="button">Post</button>
+          </div>
+        </div>
+      </div>
+
+     <div class="status">
+        <p><strong>📸 Photo - 6 hours ago</strong></p>
+        <img src="https://placehold.co/100x50?text=Photo+Placeholder" alt="Photo placeholder" style="width: 100%; border-radius: 8px; margin-bottom: 0.75rem;">
+        <div class="status-box">Stompy posing with his goat squad 🐐📸</div>
+        <div class="reactions">
+          <button class="button">👍</button>
+          <button class="button">😂</button>
+          <button class="button">😍</button>
+          <button class="button">😢</button>
+        </div>
+        <div class="comment-section">
+          <a href="#" class="view-comments-link">View comments</a>
+          <div class="comment-box">
+            <input type="text" placeholder="Add a comment..." />
+            <button class="button">Post</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Add this modal at the end of the body, before the script -->
+<div id="edit-profile-modal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Edit Profile</h2>
+      <button class="close-modal-btn" onclick="closeEditProfileModal()">✖</button>
+    </div>
+    <div class="modal-body">
+      <div class="edit-section">
+        <h3>Profile Picture</h3>
+        <div class="image-upload-container">
+          <img id="profile-preview" src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=center" alt="Profile Preview" class="preview-img">
+          <label class="upload-btn button">
+            <input type="file" id="profile-image-input" accept="image/*" style="display: none;">
+            Choose Image
+          </label>
+        </div>
+      </div>
+      
+      <div class="edit-section">
+        <h3>Header Background</h3>
+        <div class="image-upload-container">
+          <img id="header-preview" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=150&fit=crop&crop=center" alt="Header Preview" class="preview-img header-preview">
+          <label class="upload-btn button">
+            <input type="file" id="header-image-input" accept="image/*" style="display: none;">
+            Choose Image
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="button cancel-btn" onclick="closeEditProfileModal()">Cancel</button>
+      <button class="button" onclick="saveProfileChanges()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+  <script>
+document.getElementById('edit-status-btn').onclick = function() {
+  document.getElementById('edit-status-form').style.display = '';
+  document.getElementById('status-emoji').style.display = 'none';
+  document.getElementById('status-feeling').style.display = 'none';
+  document.getElementById('status-text').style.display = 'none';
+  this.style.display = 'none';
+};
+
+document.getElementById('cancel-edit-status').onclick = function() {
+  document.getElementById('edit-status-form').style.display = 'none';
+  document.getElementById('status-emoji').style.display = '';
+  document.getElementById('status-feeling').style.display = '';
+  document.getElementById('status-text').style.display = '';
+  document.getElementById('edit-status-btn').style.display = '';
+};
+
+document.getElementById('edit-status-form').onsubmit = function(e) {
+  e.preventDefault();
+  // Update the display with new values
+  document.getElementById('status-emoji').textContent = document.getElementById('edit-emoji').value;
+  document.getElementById('status-feeling').textContent = document.getElementById('edit-feeling').value;
+  document.getElementById('status-text').textContent = document.getElementById('edit-status-text').value;
+  // Hide form, show display
+  document.getElementById('edit-status-form').style.display = 'none';
+  document.getElementById('status-emoji').style.display = '';
+  document.getElementById('status-feeling').style.display = '';
+  document.getElementById('status-text').style.display = '';
+  document.getElementById('edit-status-btn').style.display = '';
+};
+
+document.getElementById('post-status-btn').onclick = function() {
+  const statusText = document.getElementById('status-input').value;
+  const statusImage = document.getElementById('status-image-preview').innerHTML;
+
+  if (!statusText && !statusImage) {
+    alert('Please add text or an image to your status update.');
+    return;
+  }
+
+  const newStatusElement = document.createElement('div');
+  newStatusElement.className = 'status';
+  newStatusElement.innerHTML = `
+    <p><strong>📸 Photo - ${new Date().toLocaleTimeString()}</strong></p>
+    ${statusImage ? `<img src="${statusImage}" alt="Status Image" style="width: 100%; border-radius: 8px; margin-bottom: 0.75rem;">` : ''}
+    <div class="status-box">${statusText}</div>
+    <div class="reactions">
+      <button class="button">👍</button>
+      <button class="button">😂</button>
+      <button class="button">😍</button>
+      <button class="button">😢</button>
+    </div>
+    <div class="comment-section">
+      <a href="#" class="view-comments-link">View comments</a>
+      <div class="comment-box">
+        <input type="text" placeholder="Add a comment..." />
+        <button class="button">Post</button>
+      </div>
+    </div>
+  `;
+
+  document.querySelector('.content > div:last-child').appendChild(newStatusElement);
+  document.getElementById('status-input').value = '';
+  document.getElementById('status-image-preview').innerHTML = '';
+};
+
+const imageInput = document.getElementById('status-image-input');
+const preview = document.getElementById('status-image-preview');
+
+imageInput.addEventListener('change', function(e) {
+  preview.innerHTML = '';
+  const file = e.target.files[0];
+  if (file) {
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.onload = () => URL.revokeObjectURL(img.src);
+
+    // Create remove button
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.className = 'status-image-remove';
+    removeBtn.innerHTML = '✖'; // X icon
+    removeBtn.title = 'Remove image';
+
+    removeBtn.onclick = function() {
+      preview.innerHTML = '';
+      imageInput.value = '';
+    };
+
+    preview.appendChild(img);
+    preview.appendChild(removeBtn);
+  }
+});
+
+// Add these new functions
+function openEditProfileModal() {
+  document.getElementById('edit-profile-modal').style.display = 'flex';
+}
+
+function closeEditProfileModal() {
+  document.getElementById('edit-profile-modal').style.display = 'none';
+}
+
+function saveProfileChanges() {
+  // Get the preview images
+  const profilePreview = document.getElementById('profile-preview');
+  const headerPreview = document.getElementById('header-preview');
+  
+  // Update the actual profile and header images
+  const profileImg = document.querySelector('.profile-img');
+  const coverSection = document.querySelector('.cover');
+  
+  if (profilePreview.src !== profileImg.src) {
+    profileImg.src = profilePreview.src;
+    // Also update the CSS custom property for consistency
+    document.documentElement.style.setProperty('--profile-image', `url('${profilePreview.src}')`);
+  }
+  
+  if (headerPreview.src !== coverSection.style.backgroundImage) {
+    coverSection.style.backgroundImage = `url('${headerPreview.src}')`;
+    // Also update the CSS custom property for consistency
+    document.documentElement.style.setProperty('--header-background', `url('${headerPreview.src}')`);
+  }
+  
+  closeEditProfileModal();
+}
+
+// Add event listeners for the edit profile button
+document.querySelector('.edit-profile-btn').addEventListener('click', openEditProfileModal);
+
+// Handle profile image upload
+document.getElementById('profile-image-input').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('profile-preview').src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// Handle header image upload
+document.getElementById('header-image-input').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('header-preview').src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// Close modal when clicking outside
+document.getElementById('edit-profile-modal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeEditProfileModal();
+  }
+});
+  </script>
+</body>
+</html>

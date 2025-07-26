@@ -1,6 +1,401 @@
 
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Community | Zoomies</title><link rel="stylesheet" href="style.css"></head><body>
-<header><h1>Zoomies Community</h1><nav><a href="index.html">Home</a><a href="ambassadors.html">Ambassadors</a></nav></header>
-<main>
-<div class="card"><h2>Forums Coming Soon!</h2><p>Share your pet pics, rescue stories, and care tips.</p></div>
-</main><footer>&copy; 2025 Zoomies</footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Community | Zoomies</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 2rem;
+      background-color: #111;
+      border-bottom: 1px solid #333;
+    }
+    .branding {
+      display: flex;
+      align-items: center;
+    }
+    header img {
+      height: 110px;
+    }
+    header h2 {
+      font-family: 'Calistoga', serif;
+      font-size: 2.5rem;
+      margin-left: 0.75rem;
+      color: #fff;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 0.5rem 1rem;
+      font-size: 1.1rem;
+    }
+    nav a.login {
+      background-color: #fc97ca;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.4rem 0.9rem;
+      font-size: 1.05rem;
+    }
+    nav a.login:hover {
+      background-color: #ff69b4;
+      color: #fff;
+    }
+    .site-search-container {
+      display: flex;
+      align-items: center;
+      margin-left: 1.5rem;
+    }
+    .site-search-input {
+      background-color: #333;
+      border: none;
+      border-radius: 999px 0 0 999px;
+      padding: 0.5rem 1rem;
+      color: #fff;
+      font-size: 0.9rem;
+      width: 140px;
+    }
+    .site-search-input::placeholder {
+      color: #999;
+    }
+    .site-search-button {
+      background-color: #333;
+      border: none;
+      border-radius: 0 999px 999px 0;
+      padding: 0.5rem 0.75rem;
+      color: #fff;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .site-search-button:hover {
+      background-color: #444;
+    }
+    .community-container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .forum-list {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .forum-section {
+      background: #1a1a1a;
+      border-radius: 14px;
+      padding: 1.2rem 1.5rem;
+      box-shadow: 0 4px 16px rgba(252,151,202,0.12), 0 1px 2px rgba(0,0,0,0.18);
+      min-width: 180px;
+      flex: 1 1 180px;
+      text-align: center;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      border: 2px solid transparent;
+    }
+    .forum-section:hover, .forum-section.active {
+      background: #222;
+      border: 2px solid #fc97ca;
+    }
+    .forum-section h3 {
+      margin: 0 0 0.3rem 0;
+      color: #fc97ca;
+      font-size: 1.1rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .forum-section p {
+      color: #ccc;
+      font-size: 0.98rem;
+      margin: 0;
+    }
+    .posts-list {
+      margin-top: 1.5rem;
+    }
+    .post-card {
+      background: #181818;
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem 1rem 1.5rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      gap: 1.2rem;
+      box-shadow: 0 2px 8px rgba(252,151,202,0.10);
+      align-items: flex-start;
+      position: relative;
+    }
+    .upvote-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 0.5rem;
+      min-width: 40px;
+    }
+    .upvote-btn {
+      background: none;
+      border: none;
+      color: #fc97ca;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.2s;
+      margin-bottom: 0.2rem;
+    }
+    .upvote-btn:hover {
+      color: #ff69b4;
+    }
+    .upvote-count {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+    .post-content {
+      flex: 1;
+    }
+    .post-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0 0 0.2rem 0;
+      color: #fff;
+    }
+    .post-meta {
+      color: #aaa;
+      font-size: 0.92rem;
+      margin-bottom: 0.4rem;
+    }
+    .post-tags {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .tag {
+      background: #fc97ca;
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.2rem 0.8rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+    .post-body {
+      color: #eee;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .post-footer {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+      font-size: 0.95rem;
+      color: #fc97ca;
+    }
+    .post-footer .comments-link {
+      color: #fc97ca;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .post-footer .comments-link:hover {
+      color: #ff69b4;
+      text-decoration: underline;
+    }
+    .moderator-badge {
+      background: #ff69b4;
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.1rem 0.7rem;
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="branding">
+      <img src="Logo.png" alt="Zoomies Logo" />
+      <h2>Zoomies</h2>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="ambassadors.html">Ambassadors</a>
+      <a href="about.html">About</a>
+      <a href="community.html">Community</a>
+      <div class="site-search-container">
+        <input type="text" placeholder="Search site..." class="site-search-input">
+        <button class="site-search-button">🔍</button>
+      </div>
+      <a href="login.html" class="login">Login</a>
+    </nav>
+  </header>
+  <div class="community-container">
+    <h1 style="font-family: 'Calistoga', serif; font-size: 2.1rem; margin-bottom: 1.2rem;"> Community</h1>
+    <div class="forum-list">
+      <div class="forum-section active" data-forum="animal-care">
+        <h3>Animal Care</h3>
+        <p>Ask and share about animal health, nutrition, and enrichment.</p>
+      </div>
+      <div class="forum-section" data-forum="pet-pics">
+        <h3>Pet Pics</h3>
+        <p>Share your cutest, funniest, and most heartwarming animal photos.</p>
+      </div>
+      <div class="forum-section" data-forum="sanctuary-amas">
+        <h3>Sanctuary AMAs</h3>
+        <p>Q&A with sanctuary staff, animal keepers, and special guests.</p>
+      </div>
+      <div class="forum-section" data-forum="adoption-tips">
+        <h3>Adoption Tips</h3>
+        <p>Advice and stories about adopting and fostering animals.</p>
+      </div>
+      <div class="forum-section" data-forum="rescue-stories">
+        <h3>Rescue Stories</h3>
+        <p>Share and read inspiring animal rescue journeys.</p>
+      </div>
+    </div>
+    <div class="posts-list" id="posts-list">
+      <!-- Example posts for Animal Care -->
+      <div class="post-card" data-forum="animal-care">
+        <div class="upvote-box">
+          <button class="upvote-btn">▲</button>
+          <div class="upvote-count">23</div>
+        </div>
+        <div class="post-content">
+          <div class="post-title">Best enrichment toys for goats?</div>
+          <div class="post-meta">by <span class="user">GoatMom</span> <span class="moderator-badge">MOD</span> • 2h ago</div>
+          <div class="post-tags"><span class="tag">Goats</span><span class="tag">Enrichment</span></div>
+          <div class="post-body">Looking for ideas to keep my goats busy and happy! What toys or activities do your goats love?</div>
+          <div class="post-footer">
+            <a href="#" class="comments-link">12 comments</a>
+            <span>Community Tag: <span class="tag">Helpful</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="post-card" data-forum="animal-care">
+        <div class="upvote-box">
+          <button class="upvote-btn">▲</button>
+          <div class="upvote-count">15</div>
+        </div>
+        <div class="post-content">
+          <div class="post-title">Safe plants for rabbits?</div>
+          <div class="post-meta">by <span class="user">BunnyBuddy</span> • 5h ago</div>
+          <div class="post-tags"><span class="tag">Rabbits</span><span class="tag">Diet</span></div>
+          <div class="post-body">What are some safe plants and herbs I can grow for my rabbits to snack on?</div>
+          <div class="post-footer">
+            <a href="#" class="comments-link">7 comments</a>
+            <span>Community Tag: <span class="tag">Diet</span></span>
+          </div>
+        </div>
+      </div>
+      <!-- Example post for Pet Pics -->
+      <div class="post-card" data-forum="pet-pics" style="display:none;">
+        <div class="upvote-box">
+          <button class="upvote-btn">▲</button>
+          <div class="upvote-count">42</div>
+        </div>
+        <div class="post-content">
+          <div class="post-title">My dog and goat are best friends 🐶🐐</div>
+          <div class="post-meta">by <span class="user">PetPal</span> • 1d ago</div>
+          <div class="post-tags"><span class="tag">Dogs</span><span class="tag">Goats</span><span class="tag">Photos</span></div>
+          <div class="post-body"><img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=300&h=180&fit=crop&crop=center" alt="Dog and Goat" style="max-width:100%;border-radius:8px;margin-bottom:0.5rem;">These two are inseparable!</div>
+          <div class="post-footer">
+            <a href="#" class="comments-link">19 comments</a>
+            <span>Community Tag: <span class="tag">Cute</span></span>
+          </div>
+        </div>
+      </div>
+      <!-- Example post for Sanctuary AMAs -->
+      <div class="post-card" data-forum="sanctuary-amas" style="display:none;">
+        <div class="upvote-box">
+          <button class="upvote-btn">▲</button>
+          <div class="upvote-count">31</div>
+        </div>
+        <div class="post-content">
+          <div class="post-title">AMA: Ask our vet about animal health!</div>
+          <div class="post-meta">by <span class="user">SanctuaryVet</span> <span class="moderator-badge">MOD</span> • 3d ago</div>
+          <div class="post-tags"><span class="tag">AMA</span><span class="tag">Health</span></div>
+          <div class="post-body">Our sanctuary vet is here to answer your questions about animal health and wellness. Ask away!</div>
+          <div class="post-footer">
+            <a href="#" class="comments-link">24 comments</a>
+            <span>Community Tag: <span class="tag">AMA</span></span>
+          </div>
+        </div>
+      </div>
+      <!-- Example post for Adoption Tips -->
+      <div class="post-card" data-forum="adoption-tips" style="display:none;">
+        <div class="upvote-box">
+          <button class="upvote-btn">▲</button>
+          <div class="upvote-count">12</div>
+        </div>
+        <div class="post-content">
+          <div class="post-title">First-time adopter tips?</div>
+          <div class="post-meta">by <span class="user">FosterFriend</span> • 4d ago</div>
+          <div class="post-tags"><span class="tag">Adoption</span><span class="tag">Tips</span></div>
+          <div class="post-body">What should I know before adopting my first rescue animal?</div>
+          <div class="post-footer">
+            <a href="#" class="comments-link">5 comments</a>
+            <span>Community Tag: <span class="tag">Advice</span></span>
+          </div>
+        </div>
+      </div>
+      <!-- Example post for Rescue Stories -->
+      <div class="post-card" data-forum="rescue-stories" style="display:none;">
+        <div class="upvote-box">
+          <button class="upvote-btn">▲</button>
+          <div class="upvote-count">55</div>
+        </div>
+        <div class="post-content">
+          <div class="post-title">From stray to superstar: Bella's journey</div>
+          <div class="post-meta">by <span class="user">RescueHero</span> • 1w ago</div>
+          <div class="post-tags"><span class="tag">Rescue</span><span class="tag">Inspiration</span></div>
+          <div class="post-body">Bella was found abandoned, but now she's the star of our sanctuary. Share your own rescue stories!</div>
+          <div class="post-footer">
+            <a href="#" class="comments-link">33 comments</a>
+            <span>Community Tag: <span class="tag">Inspiring</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Forum section switching
+    const forumSections = document.querySelectorAll('.forum-section');
+    const postCards = document.querySelectorAll('.post-card');
+    forumSections.forEach(section => {
+      section.addEventListener('click', function() {
+        forumSections.forEach(s => s.classList.remove('active'));
+        this.classList.add('active');
+        const forum = this.getAttribute('data-forum');
+        postCards.forEach(card => {
+          card.style.display = card.getAttribute('data-forum') === forum ? '' : 'none';
+        });
+      });
+    });
+    // Upvote button logic (demo only)
+    document.querySelectorAll('.upvote-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const count = this.nextElementSibling;
+        count.textContent = parseInt(count.textContent) + 1;
+        this.style.color = '#ff69b4';
+      });
+    });
+  </script>
+</body>
+</html>

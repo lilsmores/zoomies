@@ -209,28 +209,8 @@ export default function ZoomiesHeader() {
             </Link>
           </nav>
 
-          {/* Mobile theme toggle */}
-          <div style={{ marginTop: 'auto', paddingTop: 24, borderTop: '1px solid var(--gray)' }}>
-            <button 
-              onClick={toggleTheme} 
-              className="button" 
-              style={{ 
-                width: '100%',
-                border: 'none', 
-                borderRadius: 12, 
-                padding: '0.75rem', 
-                fontSize: 16, 
-                cursor: 'pointer',
-                marginBottom: 16,
-                background: 'var(--primary)',
-                color: '#fff'
-              }} 
-              title="Toggle theme"
-            >
-              {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
-            </button>
-
-            {/* Mobile login/logout */}
+          {/* Mobile login/logout - moved up */}
+          <div style={{ marginTop: 16 }}>
             {user ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '0.75rem 0' }}>
@@ -312,6 +292,28 @@ export default function ZoomiesHeader() {
                 </button>
               </div>
             )}
+          </div>
+
+          {/* Mobile theme toggle - moved down */}
+          <div style={{ marginTop: 32, paddingTop: 16, borderTop: '1px solid var(--gray)' }}>
+            <button 
+              onClick={toggleTheme} 
+              className="button" 
+              style={{ 
+                width: '100%',
+                border: 'none', 
+                borderRadius: 12, 
+                padding: '0.75rem', 
+                fontSize: 16, 
+                cursor: 'pointer',
+                marginBottom: 16,
+                background: 'var(--primary)',
+                color: '#fff'
+              }} 
+              title="Toggle theme"
+            >
+              {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
+            </button>
           </div>
         </div>
       </div>

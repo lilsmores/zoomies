@@ -148,7 +148,7 @@ export default function AmbassadorHub() {
         {/* Search Bar and Filters */}
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 24, marginBottom: 24, justifyContent: 'center', flexWrap: 'wrap' }}>
           {/* Search Bar */}
-          <div style={{ position: 'relative', maxWidth: 200 }}>
+          <div style={{ position: 'relative', maxWidth: 200, marginRight: 52 }}>
             <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8, display: 'block', textAlign: 'left' }}>Search</label>
             <input
               type="text"

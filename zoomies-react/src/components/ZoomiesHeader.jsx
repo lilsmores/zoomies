@@ -5,10 +5,11 @@ import logoWhite from '../assets/LogoWhite.png';
 
 export default function ZoomiesHeader() {
   // Placeholder login state
-  const [user, setUser] = useState(null); // null or { name, avatar }
+  const [user, setUser] = useState(null); // null or { name, avatar, type }
   const [theme, setTheme] = useState('light');
   const [isDark, setIsDark] = useState(false);
-  const handleLogin = () => setUser({ name: 'Lianne', avatar: 'https://placehold.co/32x32?text=L' });
+  const handleUserLogin = () => setUser({ name: 'Lianne', avatar: 'https://placehold.co/32x32?text=L', type: 'user' });
+  const handleSanctuaryLogin = () => setUser({ name: 'Alveus Sanctuary', avatar: 'https://placehold.co/32x32?text=A', type: 'sanctuary' });
   const handleLogout = () => setUser(null);
   const toggleTheme = () => setTheme(t => (t === 'light' ? 'dark' : 'light'));
 
@@ -60,14 +61,17 @@ export default function ZoomiesHeader() {
         </button>
         {user ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Link to="/profile" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
+            <Link to={user.type === 'sanctuary' ? '/sanctuary-dashboard' : '/profile'} style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
               <img src={user.avatar} alt={user.name} style={{ width: 32, height: 32, borderRadius: '50%' }} />
               <span style={{ color: 'var(--primary, #fc97ca)', fontWeight: 600 }}>{user.name}</span>
             </Link>
             <button onClick={handleLogout} className="button" style={{ border: 'none', borderRadius: 20, padding: '0.5rem 1rem', fontWeight: 600, marginLeft: 8, cursor: 'pointer' }}>Logout</button>
           </div>
         ) : (
-          <button onClick={handleLogin} className="button" style={{ background: isDark ? 'var(--accent)' : 'var(--pink)', color: isDark ? 'var(--text)' : '#fff', border: 'none', borderRadius: 20, padding: '0.5rem 1.25rem', fontWeight: 600, fontSize: 18, cursor: 'pointer' }}>Login</button>
+          <div style={{ display: 'flex', gap: 8 }}>
+            <button onClick={handleUserLogin} className="button" style={{ background: isDark ? 'var(--accent)' : 'var(--pink)', color: isDark ? 'var(--text)' : '#fff', border: 'none', borderRadius: 20, padding: '0.5rem 1rem', fontWeight: 600, fontSize: 14, cursor: 'pointer' }}>User</button>
+            <button onClick={handleSanctuaryLogin} className="button" style={{ background: isDark ? 'var(--accent)' : 'var(--pink)', color: isDark ? 'var(--text)' : '#fff', border: 'none', borderRadius: 20, padding: '0.5rem 1rem', fontWeight: 600, fontSize: 14, cursor: 'pointer' }}>Sanctuary</button>
+          </div>
         )}
       </div>
     </header>

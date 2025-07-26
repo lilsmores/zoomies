@@ -71,6 +71,18 @@ const LEADERBOARD = [
 export default function UserProfile() {
   const [activeTab, setActiveTab] = useState('timeline');
   const [isEditing, setIsEditing] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [profile, setProfile] = useState({
+    ...USER_DATA
+  });
+  const [editState, setEditState] = useState({
+    name: profile.name,
+    bio: profile.bio,
+    avatar: profile.avatar,
+    coverPhoto: profile.coverPhoto,
+    avatarFile: null,
+    coverFile: null
+  });
 
   const renderProgressBar = (current, max) => {
     const percentage = (current / max) * 100;
@@ -81,20 +93,128 @@ export default function UserProfile() {
     );
   };
 
+  const handleEditProfile = () => {
+    setEditState({
+      name: profile.name,
+      bio: profile.bio,
+      avatar: profile.avatar,
+      coverPhoto: profile.coverPhoto,
+      avatarFile: null,
+      coverFile: null
+    });
+    setShowEditModal(true);
+  };
+
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditState((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleImageChange = (e) => {
+    const { name, files } = e.target;
+    if (files && files[0]) {
+      const url = URL.createObjectURL(files[0]);
+      setEditState((prev) => ({ ...prev, [name]: url, [`${name}File`]: files[0] }));
+    }
+  };
+
+  const handleSaveEdit = () => {
+    setProfile((prev) => ({
+      ...prev,
+      name: editState.name,
+      bio: editState.bio,
+      avatar: editState.avatar,
+      coverPhoto: editState.coverPhoto
+    }));
+    setShowEditModal(false);
+  };
+
+  const handleCancelEdit = () => {
+    setShowEditModal(false);
+  };
+
   return (
     <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1rem' }}>
-      {/* Cover and Profile Header */}
-      <div style={{ position: 'relative', height: 300, background: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${USER_DATA.coverPhoto})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: 24, marginBottom: 24 }}>
-        <div style={{ position: 'absolute', bottom: -60, left: 32, display: 'flex', alignItems: 'flex-end', gap: 24 }}>
-          <img src={USER_DATA.avatar} alt="User Avatar" style={{ border: '4px solid var(--background)', borderRadius: '50%', width: 120, height: 120, objectFit: 'cover' }} />
-          <div style={{ marginBottom: 16 }}>
-            <h1 style={{ margin: '0 0 8px 0', fontFamily: 'Calistoga, serif', color: '#fff', fontSize: 32 }}>{USER_DATA.name}</h1>
-            <div style={{ color: '#fff', opacity: 0.9, fontSize: 18 }}>{USER_DATA.username}</div>
+      {/* Edit Profile Modal */}
+      {showEditModal && (
+        <div style={{
+          position: 'fixed',
+          top: 0, left: 0, right: 0, bottom: 0,
+          background: 'rgba(24, 23, 28, 0.35)',
+          backdropFilter: 'blur(4px)',
+          zIndex: 1000,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          <div style={{
+            background: '#fff',
+            borderRadius: 24,
+            boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
+            padding: '2.5rem 2rem 2rem 2rem',
+            minWidth: 350,
+            maxWidth: 400,
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            position: 'relative',
+          }}>
+            <div style={{ fontWeight: 700, fontSize: 22, marginBottom: 18, color: 'var(--primary)' }}>
+              Edit Profile
+            </div>
+            {/* Cover Image */}
+            <div style={{ width: '100%', marginBottom: 18 }}>
+              <label style={{ fontWeight: 500, fontSize: 15, marginBottom: 6, display: 'block' }}>Header Image</label>
+              <div style={{ position: 'relative', width: '100%', height: 90, background: '#f8f6ff', borderRadius: 12, overflow: 'hidden', marginBottom: 8, border: '1px solid var(--gray)' }}>
+                <img src={editState.coverPhoto} alt="Header Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <input type="file" accept="image/*" name="coverPhoto" onChange={handleImageChange} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0, cursor: 'pointer' }} />
+                <span style={{ position: 'absolute', bottom: 6, right: 10, background: 'rgba(255,255,255,0.8)', borderRadius: 8, padding: '2px 8px', fontSize: 12, color: 'var(--primary)' }}>Change</span>
+              </div>
+            </div>
+            {/* Avatar */}
+            <div style={{ width: '100%', marginBottom: 18 }}>
+              <label style={{ fontWeight: 500, fontSize: 15, marginBottom: 6, display: 'block' }}>Profile Picture</label>
+              <div style={{ position: 'relative', width: 70, height: 70, margin: '0 auto', borderRadius: '50%', overflow: 'hidden', border: '2px solid var(--primary)' }}>
+                <img src={editState.avatar} alt="Avatar Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <input type="file" accept="image/*" name="avatar" onChange={handleImageChange} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0, cursor: 'pointer' }} />
+                <span style={{ position: 'absolute', bottom: 2, right: 6, background: 'rgba(255,255,255,0.8)', borderRadius: 8, padding: '2px 8px', fontSize: 12, color: 'var(--primary)' }}>Change</span>
+              </div>
+            </div>
+            {/* Name */}
+            <div style={{ width: '100%', marginBottom: 18 }}>
+              <label style={{ fontWeight: 500, fontSize: 15, marginBottom: 6, display: 'block' }}>Name</label>
+              <input type="text" name="name" value={editState.name} onChange={handleEditChange} style={{ width: '100%', padding: '8px 12px', borderRadius: 8, border: '1px solid var(--gray)', fontSize: 16 }} />
+            </div>
+            {/* Bio */}
+            <div style={{ width: '100%', marginBottom: 24 }}>
+              <label style={{ fontWeight: 500, fontSize: 15, marginBottom: 6, display: 'block' }}>Bio</label>
+              <textarea name="bio" value={editState.bio} onChange={handleEditChange} style={{ width: '100%', minHeight: 60, padding: '8px 12px', borderRadius: 8, border: '1px solid var(--gray)', fontSize: 15, resize: 'vertical' }} />
+            </div>
+            {/* Buttons */}
+            <div style={{ display: 'flex', gap: 16, width: '100%', justifyContent: 'center' }}>
+              <button onClick={handleCancelEdit} style={{ background: 'none', border: 'none', color: 'var(--primary)', fontWeight: 600, fontSize: 16, cursor: 'pointer' }}>Cancel</button>
+              <button onClick={handleSaveEdit} className="button" style={{ background: 'linear-gradient(90deg, var(--primary), var(--pink))', color: '#fff', fontWeight: 600, fontSize: 16, border: 'none', borderRadius: 20, padding: '10px 32px', boxShadow: '0 2px 8px rgba(252,151,202,0.08)' }}>Save</button>
+            </div>
           </div>
         </div>
-        <div style={{ position: 'absolute', top: 16, right: 24, display: 'flex', gap: 12 }}>
-          <button className="button" style={{ background: 'rgba(255,255,255,0.2)', color: '#fff', border: '1px solid rgba(255,255,255,0.3)' }}>
-            {isEditing ? 'Save' : 'Edit Profile'}
+      )}
+
+      {/* Cover and Profile Header */}
+      <div style={{ position: 'relative', height: 180, background: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${profile.coverPhoto})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: 24, marginBottom: 24 }}>
+        {/* Avatar and name/username positioned together */}
+        <div style={{ position: 'absolute', bottom: -60, left: 32, display: 'flex', alignItems: 'flex-end', gap: 24 }}>
+          <img src={profile.avatar} alt="User Avatar" style={{ border: '4px solid var(--background)', borderRadius: '50%', width: 100, height: 100, objectFit: 'cover' }} />
+          <div style={{ marginBottom: 60 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <h1 style={{ margin: 0, fontFamily: 'Calistoga, serif', color: '#fff', fontSize: 28 }}>{profile.name}</h1>
+              <span style={{ color: '#fff', opacity: 0.7, fontSize: 16, fontWeight: 400, marginLeft: 4 }}>{profile.username}</span>
+            </div>
+          </div>
+        </div>
+        <div style={{ position: 'absolute', top: 12, right: 24, display: 'flex', gap: 12 }}>
+          <button className="button" style={{ background: 'rgba(255,255,255,0.2)', color: '#fff', border: '1px solid rgba(255,255,255,0.3)' }} onClick={handleEditProfile}>
+            Edit Profile
           </button>
           <button className="button" style={{ background: 'rgba(255,255,255,0.2)', color: '#fff', border: '1px solid rgba(255,255,255,0.3)' }}>
             Settings
@@ -104,22 +224,22 @@ export default function UserProfile() {
 
       {/* Profile Stats */}
       <div style={{ marginLeft: 176, marginBottom: 32 }}>
-        <p style={{ color: 'var(--text)', opacity: 0.8, margin: '0 0 16px 0', maxWidth: 600 }}>{USER_DATA.bio}</p>
+        <p style={{ color: 'var(--text)', opacity: 0.8, margin: '0 0 32px 0', maxWidth: 600 }}>{profile.bio}</p>
         <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', marginBottom: 16 }}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: 24, fontWeight: 600, color: 'var(--primary)' }}>${USER_DATA.totalDonated}</div>
+            <div style={{ fontSize: 24, fontWeight: 600, color: 'var(--primary)' }}>${profile.totalDonated}</div>
             <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>Total Donated</div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: 24, fontWeight: 600, color: 'var(--primary)' }}>{USER_DATA.animalsHelped}</div>
+            <div style={{ fontSize: 24, fontWeight: 600, color: 'var(--primary)' }}>{profile.animalsHelped}</div>
             <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>Animals Helped</div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: 24, fontWeight: 600, color: 'var(--primary)' }}>{USER_DATA.followers}</div>
+            <div style={{ fontSize: 24, fontWeight: 600, color: 'var(--primary)' }}>{profile.followers}</div>
             <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>Followers</div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: 24, fontWeight: 600, color: 'var(--primary)' }}>{USER_DATA.following}</div>
+            <div style={{ fontSize: 24, fontWeight: 600, color: 'var(--primary)' }}>{profile.following}</div>
             <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>Following</div>
           </div>
         </div>
@@ -166,7 +286,7 @@ export default function UserProfile() {
               {/* Post Creation */}
               <div style={{ background: 'var(--background)', borderRadius: 12, padding: 20, marginBottom: 24, border: '1px solid var(--gray)' }}>
                 <div style={{ display: 'flex', gap: 12, marginBottom: 16 }}>
-                  <img src={USER_DATA.avatar} alt={USER_DATA.name} style={{ width: 40, height: 40, borderRadius: '50%' }} />
+                  <img src={profile.avatar} alt={profile.name} style={{ width: 40, height: 40, borderRadius: '50%' }} />
                   <div style={{ flex: 1 }}>
                     <textarea 
                       placeholder="What's on your mind? Share your animal sanctuary experiences, donations, or thoughts..."
@@ -198,9 +318,9 @@ export default function UserProfile() {
                 {/* Timeline posts similar to animal profiles */}
                 <div style={{ border: '1px solid var(--gray)', borderRadius: 12, padding: 20 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
-                    <img src={USER_DATA.avatar} alt={USER_DATA.name} style={{ width: 40, height: 40, borderRadius: '50%' }} />
+                    <img src={profile.avatar} alt={profile.name} style={{ width: 40, height: 40, borderRadius: '50%' }} />
                     <div>
-                      <div style={{ fontWeight: 600 }}>{USER_DATA.name}</div>
+                      <div style={{ fontWeight: 600 }}>{profile.name}</div>
                       <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>2 hours ago</div>
                     </div>
                   </div>
@@ -214,9 +334,9 @@ export default function UserProfile() {
 
                 <div style={{ border: '1px solid var(--gray)', borderRadius: 12, padding: 20 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
-                    <img src={USER_DATA.avatar} alt={USER_DATA.name} style={{ width: 40, height: 40, borderRadius: '50%' }} />
+                    <img src={profile.avatar} alt={profile.name} style={{ width: 40, height: 40, borderRadius: '50%' }} />
                     <div>
-                      <div style={{ fontWeight: 600 }}>{USER_DATA.name}</div>
+                      <div style={{ fontWeight: 600 }}>{profile.name}</div>
                       <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>1 day ago</div>
                     </div>
                   </div>
@@ -231,9 +351,9 @@ export default function UserProfile() {
 
                 <div style={{ border: '1px solid var(--gray)', borderRadius: 12, padding: 20 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
-                    <img src={USER_DATA.avatar} alt={USER_DATA.name} style={{ width: 40, height: 40, borderRadius: '50%' }} />
+                    <img src={profile.avatar} alt={profile.name} style={{ width: 40, height: 40, borderRadius: '50%' }} />
                     <div>
-                      <div style={{ fontWeight: 600 }}>{USER_DATA.name}</div>
+                      <div style={{ fontWeight: 600 }}>{profile.name}</div>
                       <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>3 days ago</div>
                     </div>
                   </div>

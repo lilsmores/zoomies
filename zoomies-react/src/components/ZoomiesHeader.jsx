@@ -53,6 +53,7 @@ export default function ZoomiesHeader() {
             <Link to="/" style={{ color: 'var(--text, #18171C)', textDecoration: 'none', fontWeight: 500 }}>Home</Link>
             <Link to="/ambassador-hub" style={{ color: 'var(--text, #18171C)', textDecoration: 'none', fontWeight: 500 }}>Animals</Link>
             <Link to="/community" style={{ color: 'var(--text, #18171C)', textDecoration: 'none', fontWeight: 500 }}>Community</Link>
+            <Link to="/premium" style={{ color: 'var(--text, #18171C)', textDecoration: 'none', fontWeight: 500 }}>Premium</Link>
           </nav>
         </div>
         <form className="desktop-search" style={{ flex: 1, maxWidth: 240, margin: '0 1.25rem', display: 'flex', alignItems: 'center', background: 'var(--background, #F8F6FF)', borderRadius: 24, boxShadow: '0 1px 4px rgba(0,0,0,0.03)' }}>
@@ -206,6 +207,20 @@ export default function ZoomiesHeader() {
               }}
             >
               👥 Community
+            </Link>
+            <Link 
+              to="/premium" 
+              onClick={toggleMobileMenu}
+              style={{ 
+                color: 'var(--text)', 
+                textDecoration: 'none', 
+                fontWeight: 500, 
+                fontSize: 18,
+                padding: '0.75rem 0',
+                borderBottom: '1px solid var(--gray)'
+              }}
+            >
+              ⭐ Premium
             </Link>
           </nav>
 

@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Community from './pages/Community';
 import UserProfile from './pages/UserProfile';
 import SanctuaryDashboard from './pages/SanctuaryDashboard';
+import Premium from './pages/Premium';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/community" element={<Community />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/sanctuary-dashboard" element={<SanctuaryDashboard />} />
+          <Route path="/premium" element={<Premium />} />
           <Route path="/ambassadors/:id" element={<AmbassadorProfilePage />} />
           <Route path="/ambassadors-copy/:id" element={<AmbassadorProfilePageCopy />} />
           <Route path="/ambassadors-old/:id" element={<AmbassadorProfilePageOld />} />

@@ -60,8 +60,10 @@ export default function ZoomiesHeader() {
         </button>
         {user ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <img src={user.avatar} alt={user.name} style={{ width: 32, height: 32, borderRadius: '50%' }} />
-            <span style={{ color: 'var(--primary, #fc97ca)', fontWeight: 600 }}>{user.name}</span>
+            <Link to="/profile" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
+              <img src={user.avatar} alt={user.name} style={{ width: 32, height: 32, borderRadius: '50%' }} />
+              <span style={{ color: 'var(--primary, #fc97ca)', fontWeight: 600 }}>{user.name}</span>
+            </Link>
             <button onClick={handleLogout} className="button" style={{ border: 'none', borderRadius: 20, padding: '0.5rem 1rem', fontWeight: 600, marginLeft: 8, cursor: 'pointer' }}>Logout</button>
           </div>
         ) : (

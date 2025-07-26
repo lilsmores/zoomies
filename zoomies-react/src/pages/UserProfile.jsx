@@ -134,10 +134,10 @@ export default function UserProfile() {
   };
 
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1rem' }}>
+    <div className="user-profile" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1rem' }}>
       {/* Edit Profile Modal */}
       {showEditModal && (
-        <div style={{
+        <div className="edit-modal" style={{
           position: 'fixed',
           top: 0, left: 0, right: 0, bottom: 0,
           background: 'rgba(24, 23, 28, 0.35)',
@@ -166,7 +166,7 @@ export default function UserProfile() {
             {/* Cover Image */}
             <div style={{ width: '100%', marginBottom: 18 }}>
               <label style={{ fontWeight: 500, fontSize: 15, marginBottom: 6, display: 'block' }}>Header Image</label>
-              <div style={{ position: 'relative', width: '100%', height: 90, background: '#f8f6ff', borderRadius: 12, overflow: 'hidden', marginBottom: 8, border: '1px solid var(--gray)' }}>
+              <div className="cover-preview" style={{ position: 'relative', width: '100%', height: 90, background: '#f8f6ff', borderRadius: 12, overflow: 'hidden', marginBottom: 8, border: '1px solid var(--gray)' }}>
                 <img src={editState.coverPhoto} alt="Header Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 <input type="file" accept="image/*" name="coverPhoto" onChange={handleImageChange} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0, cursor: 'pointer' }} />
                 <span style={{ position: 'absolute', bottom: 6, right: 10, background: 'rgba(255,255,255,0.8)', borderRadius: 8, padding: '2px 8px', fontSize: 12, color: 'var(--primary)' }}>Change</span>
@@ -175,7 +175,7 @@ export default function UserProfile() {
             {/* Avatar */}
             <div style={{ width: '100%', marginBottom: 18 }}>
               <label style={{ fontWeight: 500, fontSize: 15, marginBottom: 6, display: 'block' }}>Profile Picture</label>
-              <div style={{ position: 'relative', width: 70, height: 70, margin: '0 auto', borderRadius: '50%', overflow: 'hidden', border: '2px solid var(--primary)' }}>
+              <div className="avatar-preview" style={{ position: 'relative', width: 70, height: 70, margin: '0 auto', borderRadius: '50%', overflow: 'hidden', border: '2px solid var(--primary)' }}>
                 <img src={editState.avatar} alt="Avatar Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 <input type="file" accept="image/*" name="avatar" onChange={handleImageChange} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0, cursor: 'pointer' }} />
                 <span style={{ position: 'absolute', bottom: 2, right: 6, background: 'rgba(255,255,255,0.8)', borderRadius: 8, padding: '2px 8px', fontSize: 12, color: 'var(--primary)' }}>Change</span>
@@ -192,7 +192,7 @@ export default function UserProfile() {
               <textarea name="bio" value={editState.bio} onChange={handleEditChange} style={{ width: '100%', minHeight: 60, padding: '8px 12px', borderRadius: 8, border: '1px solid var(--gray)', fontSize: 15, resize: 'vertical' }} />
             </div>
             {/* Buttons */}
-            <div style={{ display: 'flex', gap: 16, width: '100%', justifyContent: 'center' }}>
+            <div className="modal-buttons" style={{ display: 'flex', gap: 16, width: '100%', justifyContent: 'center' }}>
               <button onClick={handleCancelEdit} style={{ background: 'none', border: 'none', color: 'var(--primary)', fontWeight: 600, fontSize: 16, cursor: 'pointer' }}>Cancel</button>
               <button onClick={handleSaveEdit} className="button" style={{ background: 'linear-gradient(90deg, var(--primary), var(--pink))', color: '#fff', fontWeight: 600, fontSize: 16, border: 'none', borderRadius: 20, padding: '10px 32px', boxShadow: '0 2px 8px rgba(252,151,202,0.08)' }}>Save</button>
             </div>
@@ -201,9 +201,9 @@ export default function UserProfile() {
       )}
 
       {/* Cover and Profile Header */}
-      <div style={{ position: 'relative', height: 180, background: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${profile.coverPhoto})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: 24, marginBottom: 24 }}>
+      <div className="profile-header" style={{ position: 'relative', height: 180, background: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${profile.coverPhoto})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: 24, marginBottom: 24 }}>
         {/* Avatar and name/username positioned together */}
-        <div style={{ position: 'absolute', bottom: -60, left: 32, display: 'flex', alignItems: 'flex-end', gap: 24 }}>
+        <div className="avatar-name" style={{ position: 'absolute', bottom: -60, left: 32, display: 'flex', alignItems: 'flex-end', gap: 24 }}>
           <img src={profile.avatar} alt="User Avatar" style={{ border: '4px solid var(--background)', borderRadius: '50%', width: 100, height: 100, objectFit: 'cover' }} />
           <div style={{ marginBottom: 60 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -212,7 +212,7 @@ export default function UserProfile() {
             </div>
           </div>
         </div>
-        <div style={{ position: 'absolute', top: 12, right: 24, display: 'flex', gap: 12 }}>
+        <div className="actions" style={{ position: 'absolute', top: 12, right: 24, display: 'flex', gap: 12 }}>
           <button className="button" style={{ background: 'rgba(255,255,255,0.2)', color: '#fff', border: '1px solid rgba(255,255,255,0.3)' }} onClick={handleEditProfile}>
             Edit Profile
           </button>
@@ -223,9 +223,9 @@ export default function UserProfile() {
       </div>
 
       {/* Profile Stats */}
-      <div style={{ marginLeft: 176, marginBottom: 32 }}>
+      <div className="profile-stats" style={{ marginLeft: 176, marginBottom: 32 }}>
         <p style={{ color: 'var(--text)', opacity: 0.8, margin: '0 0 32px 0', maxWidth: 600 }}>{profile.bio}</p>
-        <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', marginBottom: 16 }}>
+        <div className="stats-grid" style={{ display: 'flex', gap: 32, flexWrap: 'wrap', marginBottom: 16 }}>
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: 24, fontWeight: 600, color: 'var(--primary)' }}>${profile.totalDonated}</div>
             <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>Total Donated</div>
@@ -243,12 +243,10 @@ export default function UserProfile() {
             <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>Following</div>
           </div>
         </div>
-        
-        
       </div>
 
       {/* Tabs */}
-      <div style={{ display: 'flex', gap: 8, marginBottom: 24, borderBottom: '1px solid var(--gray)' }}>
+      <div className="tabs" style={{ display: 'flex', gap: 8, marginBottom: 24, borderBottom: '1px solid var(--gray)' }}>
         {[
           { id: 'timeline', label: 'Timeline', icon: '📱' },
           { id: 'badges', label: 'Badges', icon: '🏆' },
@@ -276,7 +274,7 @@ export default function UserProfile() {
       </div>
 
       {/* Tab Content */}
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 24 }}>
+      <div className="tab-content" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 24 }}>
         {/* Main Content */}
         <div>
           {activeTab === 'timeline' && (
@@ -284,7 +282,7 @@ export default function UserProfile() {
               <h2 style={{ margin: '0 0 20px 0', fontSize: 24 }}>Timeline</h2>
               
               {/* Post Creation */}
-              <div style={{ background: 'var(--background)', borderRadius: 12, padding: 20, marginBottom: 24, border: '1px solid var(--gray)' }}>
+              <div className="post-creation" style={{ background: 'var(--background)', borderRadius: 12, padding: 20, marginBottom: 24, border: '1px solid var(--gray)' }}>
                 <div style={{ display: 'flex', gap: 12, marginBottom: 16 }}>
                   <img src={profile.avatar} alt={profile.name} style={{ width: 40, height: 40, borderRadius: '50%' }} />
                   <div style={{ flex: 1 }}>
@@ -303,7 +301,7 @@ export default function UserProfile() {
                     />
                   </div>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div className="actions" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div style={{ display: 'flex', gap: 12 }}>
                     <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 18 }} title="Add photo">📸</button>
                     <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 18 }} title="Add video">🎥</button>
@@ -316,49 +314,49 @@ export default function UserProfile() {
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
                 {/* Timeline posts similar to animal profiles */}
-                <div style={{ border: '1px solid var(--gray)', borderRadius: 12, padding: 20 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+                <div className="post-card" style={{ border: '1px solid var(--gray)', borderRadius: 12, padding: 20 }}>
+                  <div className="post-header" style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
                     <img src={profile.avatar} alt={profile.name} style={{ width: 40, height: 40, borderRadius: '50%' }} />
-                    <div>
+                    <div className="post-info">
                       <div style={{ fontWeight: 600 }}>{profile.name}</div>
                       <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>2 hours ago</div>
                     </div>
                   </div>
                   <p style={{ margin: '0 0 16px 0', lineHeight: 1.6 }}>Just donated $50 to Stompy! 🐐 So happy to help this little guy get the care he needs. #sanctuarylife #animalwelfare</p>
-                  <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                  <div className="post-actions" style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
                     <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>❤️ 24</button>
                     <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>💬 8</button>
                     <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>🔄 Share</button>
                   </div>
                 </div>
 
-                <div style={{ border: '1px solid var(--gray)', borderRadius: 12, padding: 20 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+                <div className="post-card" style={{ border: '1px solid var(--gray)', borderRadius: 12, padding: 20 }}>
+                  <div className="post-header" style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
                     <img src={profile.avatar} alt={profile.name} style={{ width: 40, height: 40, borderRadius: '50%' }} />
-                    <div>
+                    <div className="post-info">
                       <div style={{ fontWeight: 600 }}>{profile.name}</div>
                       <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>1 day ago</div>
                     </div>
                   </div>
                   <p style={{ margin: '0 0 16px 0', lineHeight: 1.6 }}>Visited Alveus Sanctuary today! The animals are doing amazing and the staff is incredible. Luna is recovering so well! 🐄✨</p>
                   <img src="https://images.unsplash.com/photo-1518715308788-3005759c61d4?w=400&h=300&fit=crop&crop=center" alt="Sanctuary visit" style={{ width: '100%', borderRadius: 8, marginBottom: 16 }} />
-                  <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                  <div className="post-actions" style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
                     <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>❤️ 42</button>
                     <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>💬 15</button>
                     <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>🔄 Share</button>
                   </div>
                 </div>
 
-                <div style={{ border: '1px solid var(--gray)', borderRadius: 12, padding: 20 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+                <div className="post-card" style={{ border: '1px solid var(--gray)', borderRadius: 12, padding: 20 }}>
+                  <div className="post-header" style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
                     <img src={profile.avatar} alt={profile.name} style={{ width: 40, height: 40, borderRadius: '50%' }} />
-                    <div>
+                    <div className="post-info">
                       <div style={{ fontWeight: 600 }}>{profile.name}</div>
                       <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>3 days ago</div>
                     </div>
                   </div>
                   <p style={{ margin: '0 0 16px 0', lineHeight: 1.6 }}>Earned the "Fundraiser" badge! 🏆 So proud to have raised over $500 for animal causes. Every little bit helps! #fundraiser #animaladvocate</p>
-                  <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                  <div className="post-actions" style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
                     <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>❤️ 67</button>
                     <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>💬 23</button>
                     <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16 }}>🔄 Share</button>
@@ -371,9 +369,9 @@ export default function UserProfile() {
           {activeTab === 'badges' && (
             <div style={{ background: 'var(--card)', borderRadius: 16, padding: 24 }}>
               <h2 style={{ margin: '0 0 20px 0', fontSize: 24 }}>Earned Badges</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 16 }}>
+              <div className="badges-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 16 }}>
                 {BADGES.map(badge => (
-                  <div key={badge.name} style={{ background: 'var(--background)', borderRadius: 12, padding: 16, textAlign: 'center' }}>
+                  <div key={badge.name} className="badge-card" style={{ background: 'var(--background)', borderRadius: 12, padding: 16, textAlign: 'center' }}>
                     <div style={{ fontSize: 32, marginBottom: 8 }}>{badge.icon}</div>
                     <div style={{ fontWeight: 600, marginBottom: 4 }}>{badge.name}</div>
                     <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7, marginBottom: 8 }}>{badge.description}</div>
@@ -391,9 +389,9 @@ export default function UserProfile() {
               <h3 style={{ margin: '20px 0 12px 0', fontSize: 18 }}>Animals</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 24 }}>
                 {FOLLOWED_ANIMALS.map(animal => (
-                  <div key={animal.name} style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                  <div key={animal.name} className="following-item" style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
                     <img src={animal.image} alt={animal.name} style={{ width: 50, height: 50, borderRadius: 8, objectFit: 'cover' }} />
-                    <div style={{ flex: 1 }}>
+                    <div className="item-info" style={{ flex: 1 }}>
                       <div style={{ fontWeight: 600 }}>{animal.name}</div>
                       <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>{animal.type} • {animal.sanctuary}</div>
                     </div>
@@ -405,9 +403,9 @@ export default function UserProfile() {
               <h3 style={{ margin: '20px 0 12px 0', fontSize: 18 }}>Sanctuaries</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {FOLLOWED_SANCTUARIES.map(sanctuary => (
-                  <div key={sanctuary.name} style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                  <div key={sanctuary.name} className="following-item" style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
                     <img src={sanctuary.image} alt={sanctuary.name} style={{ width: 50, height: 50, borderRadius: 8, objectFit: 'cover' }} />
-                    <div style={{ flex: 1 }}>
+                    <div className="item-info" style={{ flex: 1 }}>
                       <div style={{ fontWeight: 600 }}>{sanctuary.name}</div>
                       <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>{sanctuary.location} • {sanctuary.animals} animals</div>
                     </div>
@@ -422,7 +420,7 @@ export default function UserProfile() {
               <h2 style={{ margin: '0 0 20px 0', fontSize: 24 }}>Donation History</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {DONATIONS.map((donation, index) => (
-                  <div key={index} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0', borderBottom: '1px solid var(--gray)' }}>
+                  <div key={index} className="donation-item" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0', borderBottom: '1px solid var(--gray)' }}>
                     <div>
                       <div style={{ fontWeight: 600 }}>${donation.amount} to {donation.to}</div>
                       <div style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>{donation.date}</div>
@@ -439,10 +437,10 @@ export default function UserProfile() {
               <h2 style={{ margin: '0 0 20px 0', fontSize: 24 }}>My Fundraisers</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                 {FUNDRAISERS.map((fundraiser, index) => (
-                  <div key={index} style={{ background: 'var(--background)', borderRadius: 12, padding: 16 }}>
-                    <div style={{ display: 'flex', gap: 16 }}>
+                  <div key={index} className="fundraiser-item" style={{ background: 'var(--background)', borderRadius: 12, padding: 16 }}>
+                    <div className="fundraiser-content" style={{ display: 'flex', gap: 16 }}>
                       <img src={fundraiser.image} alt={fundraiser.name} style={{ width: 80, height: 60, borderRadius: 8, objectFit: 'cover' }} />
-                      <div style={{ flex: 1 }}>
+                      <div className="fundraiser-info" style={{ flex: 1 }}>
                         <div style={{ fontWeight: 600, marginBottom: 8 }}>{fundraiser.name}</div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                           <span style={{ fontSize: 14, color: 'var(--text)', opacity: 0.7 }}>${fundraiser.raised} raised of ${fundraiser.goal}</span>
@@ -459,15 +457,15 @@ export default function UserProfile() {
         </div>
 
         {/* Sidebar */}
-        <div>
+        <div className="sidebar">
           {/* Activity Feed */}
-          <div style={{ background: 'var(--card)', borderRadius: 16, padding: 24, marginBottom: 24 }}>
+          <div className="activity-feed" style={{ background: 'var(--card)', borderRadius: 16, padding: 24, marginBottom: 24 }}>
             <h3 style={{ margin: '0 0 16px 0', fontSize: 20 }}>Recent Activity</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {ACTIVITY_FEED.map((activity, index) => (
-                <div key={index} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', padding: '8px 0', borderBottom: '1px solid var(--gray)' }}>
+                <div key={index} className="activity-item" style={{ display: 'flex', gap: 8, alignItems: 'flex-start', padding: '8px 0', borderBottom: '1px solid var(--gray)' }}>
                   <div style={{ fontSize: 16 }}>{activity.icon}</div>
-                  <div style={{ flex: 1 }}>
+                  <div className="activity-content" style={{ flex: 1 }}>
                     <div style={{ fontSize: 14, marginBottom: 2 }}>{activity.content}</div>
                     <div style={{ fontSize: 12, color: 'var(--text)', opacity: 0.6 }}>{activity.time}</div>
                   </div>
@@ -477,11 +475,11 @@ export default function UserProfile() {
           </div>
 
           {/* Quick Actions */}
-          <div style={{ background: 'var(--card)', borderRadius: 16, padding: 24 }}>
+          <div className="quick-actions" style={{ background: 'var(--card)', borderRadius: 16, padding: 24 }}>
             <h3 style={{ margin: '0 0 16px 0', fontSize: 20 }}>Quick Actions</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <Link to="/ambassador-hub" className="button" style={{ textAlign: 'center', textDecoration: 'none' }}>
-                🐾 Support an Animal
+                �� Support an Animal
               </Link>
               <Link to="/community" className="button" style={{ textAlign: 'center', textDecoration: 'none' }}>
                 👥 Join Community

@@ -119,9 +119,9 @@ export default function AmbassadorProfilePage() {
   return (
     <div className="ambassador-profile" style={{ background: 'var(--background)' }}>
       {/* Cover Image */}
-      <div style={{ position: 'relative', width: '100%', height: 260, background: `url(${animal.coverImg}) center/cover no-repeat` }}>
+      <div className="cover" style={{ position: 'relative', width: '100%', height: 260, background: `url(${animal.coverImg}) center/cover no-repeat` }}>
         {/* Profile Picture - Left Side */}
-        <div style={{ position: 'absolute', left: 32, bottom: -150, zIndex: 2 }}>
+        <div className="profile-pic" style={{ position: 'absolute', left: 32, bottom: -150, zIndex: 2 }}>
           <img
             src={animal.profileImg}
             alt={animal.name}
@@ -131,7 +131,7 @@ export default function AmbassadorProfilePage() {
       </div>
       
       {/* Profile Info and Buttons - Below Header */}
-      <div style={{ 
+      <div className="profile-header" style={{ 
         display: 'flex', 
         alignItems: 'flex-end', 
         justifyContent: 'space-between',
@@ -142,7 +142,7 @@ export default function AmbassadorProfilePage() {
         minHeight: 100
       }}>
         {/* Left side: Profile Info next to profile picture */}
-        <div style={{ display: 'flex', flexDirection: 'column', marginLeft: 220, marginBottom: 12 }}>
+        <div className="profile-info" style={{ display: 'flex', flexDirection: 'column', marginLeft: 220, marginBottom: 12 }}>
           <h1 style={{ fontFamily: 'Calistoga, serif', fontSize: 32, margin: 0, color: 'var(--text)' }}>{animal.name}</h1>
           <div style={{ color: 'var(--primary)', fontWeight: 600, fontSize: 18 }}>
             {animal.sanctuary} <span style={{ color: 'var(--pink)', fontWeight: 400 }}>• {animal.species}</span>
@@ -150,7 +150,7 @@ export default function AmbassadorProfilePage() {
         </div>
         
         {/* Right side: Action Buttons */}
-        <div style={{ display: 'flex', gap: 16, marginBottom: 12 }}>
+        <div className="profile-actions" style={{ display: 'flex', gap: 16, marginBottom: 12 }}>
           <button className="button" style={{ color: isDark ? 'var(--text)' : '#fff', fontSize: 18, minWidth: 100, borderRadius: 20, display: 'flex', alignItems: 'center', gap: 6 }}>
             <span role="img" aria-label="gift">🎁</span> Donate
           </button>
@@ -164,7 +164,7 @@ export default function AmbassadorProfilePage() {
       </div>
       
       {/* Fundraising Progress Bar */}
-      <div style={{ maxWidth: 1000, margin: '0 auto', marginBottom: 32, marginTop: 32 }}>
+      <div className="fundraising-bar" style={{ maxWidth: 1000, margin: '0 auto', marginBottom: 32, marginTop: 32 }}>
         <div style={{ background: 'var(--card)', borderRadius: 16, padding: '0.75rem 2.5rem', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div style={{ fontWeight: 600, fontSize: 18, color: 'var(--text)', marginBottom: 8 }}>
             ${animal.donation.raised} raised of ${animal.donation.goal} goal ({Math.round((animal.donation.raised/animal.donation.goal)*100)}%)
@@ -200,7 +200,7 @@ export default function AmbassadorProfilePage() {
         </div>
       </div>
       {/* Profile Tabs with Full-Width Border */}
-      <div style={{ maxWidth: 1100, margin: '0 auto', marginBottom: 0, marginTop: 0, borderBottom: '2.5px solid var(--border)' }}>
+      <div className="profile-tabs" style={{ maxWidth: 1100, margin: '0 auto', marginBottom: 0, marginTop: 0, borderBottom: '2.5px solid var(--border)' }}>
         <div style={{ display: 'flex', justifyContent: 'center', gap: 48 }}>
           {['Timeline', 'About', 'Donations', 'Photos', 'More'].map((tab, i) => (
             <a
@@ -240,10 +240,10 @@ export default function AmbassadorProfilePage() {
         </div>
       </div>
       {/* Main Content (Timeline, About, etc.) */}
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: 32 }}>
+      <div className="profile-main" style={{ maxWidth: 1100, margin: '0 auto', padding: 32 }}>
         <div className="content" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 32, padding: 32 }}>
-          <div>
-            <div className="card" style={{ background: 'var(--card, #1a1a1a)', padding: 24, borderRadius: 16, marginBottom: 24 }}>
+          <div className="profile-sidebar">
+            <div className="about-card card" style={{ background: 'var(--card, #1a1a1a)', padding: 24, borderRadius: 16, marginBottom: 24 }}>
               <h2>About {animal.name.split(' ')[0]}</h2>
               <p>{animal.about}</p>
               <p><strong>Joined:</strong> {animal.joined}</p>
@@ -282,7 +282,7 @@ export default function AmbassadorProfilePage() {
               </div>
             </div>
           </div>
-          <div>
+          <div className="profile-content">
             <div className="status" style={{ background: 'var(--card, #1a1a1a)', padding: 24, borderRadius: 16, marginBottom: 24 }}>
               <h2>🤪 {animal.name.split(' ')[0]} is feeling: <span style={{ color: 'var(--primary, #fc97ca)' }}>Silly</span></h2>
               <div className="status-box" style={{ background: 'var(--gray, #222)', padding: 16, borderRadius: 12, marginBottom: 16 }}>Just had a big bowl of insects — thanks Name for the $25 treat!</div>

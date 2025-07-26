@@ -68,7 +68,7 @@ export default function Community() {
     : POSTS.filter(post => post.section === selectedSection);
 
   return (
-    <div style={{ 
+    <div className="community-root" style={{ 
       display: 'flex', 
       minHeight: '100vh', 
       background: 'var(--background)',
@@ -227,10 +227,91 @@ export default function Community() {
 
       {/* Main Content */}
       <div style={{ flex: 1, padding: '32px', minWidth: 0, marginLeft: 280 }}>
+        {/* Mobile Category Bar */}
+        <div className="category-bar" style={{
+          display: 'none',
+          overflowX: 'auto',
+          gap: 8,
+          padding: '8px 0 12px 0',
+          marginBottom: 16,
+          borderBottom: '1px solid var(--border)'
+        }}>
+          <button
+            className="button"
+            style={{
+              minWidth: 80,
+              background: selectedSection === 'all' ? 'var(--primary)' : 'var(--background)',
+              color: selectedSection === 'all' ? 'var(--background)' : 'var(--text)',
+              borderRadius: 8,
+              fontWeight: 600,
+              fontSize: 15,
+              padding: '8px 12px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6
+            }}
+            onClick={() => setSelectedSection('all')}
+          >
+            🏠 All
+          </button>
+          {TOPICS.map((topic, idx) => (
+            <button
+              key={topic.name}
+              className="button"
+              style={{
+                minWidth: 80,
+                background: selectedSection === topic.name ? 'var(--primary)' : 'var(--background)',
+                color: selectedSection === topic.name ? 'var(--background)' : 'var(--text)',
+                borderRadius: 8,
+                fontWeight: 600,
+                fontSize: 15,
+                padding: '8px 12px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6
+              }}
+              onClick={() => setSelectedSection(topic.name)}
+            >
+              <span style={{ fontSize: 16 }}>{topic.icon}</span> {topic.name}
+            </button>
+          ))}
+          {/* Mobile Search Bar */}
+          <div style={{
+            width: '100%',
+            marginTop: 8,
+            position: 'relative'
+          }}>
+            <input
+              type="text"
+              placeholder="Search posts..."
+              style={{
+                width: '100%',
+                padding: '12px 16px 12px 40px',
+                borderRadius: 8,
+                border: '1px solid var(--border)',
+                background: 'var(--background)',
+                color: 'var(--text)',
+                fontSize: 16,
+                outline: 'none'
+              }}
+            />
+            <span style={{
+              position: 'absolute',
+              left: 12,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              fontSize: 16,
+              color: 'var(--text)',
+              opacity: 0.6
+            }}>
+              🔍
+            </span>
+          </div>
+        </div>
         <div style={{ maxWidth: 800, margin: '0 auto' }}>
           {/* Trending Posts Scroll */}
           <div style={{ marginBottom: 32, position: 'relative' }}>
-            <div style={{ 
+            <div className="trending-scroll" style={{ 
               display: 'flex', 
               gap: 16, 
               overflowX: 'auto', 
@@ -339,7 +420,7 @@ export default function Community() {
           </div>
 
           {/* Sort Options */}
-          <div style={{ display: 'flex', gap: 16, marginBottom: 24, padding: '16px 0', borderBottom: '1px solid var(--border)' }}>
+          <div className="sort-options" style={{ display: 'flex', gap: 16, marginBottom: 24, padding: '16px 0', borderBottom: '1px solid var(--border)' }}>
             <button className="button" style={{ background: 'var(--primary)', color: 'var(--background)', padding: '8px 16px', fontSize: 14 }}>Best</button>
             <button className="button" style={{ background: isDark ? '#2A2A2A' : 'transparent', color: 'var(--text)', padding: '8px 16px', fontSize: 14 }}>New</button>
             <button className="button" style={{ background: isDark ? '#2A2A2A' : 'transparent', color: 'var(--text)', padding: '8px 16px', fontSize: 14 }}>Top</button>
@@ -347,9 +428,9 @@ export default function Community() {
           </div>
 
           {/* Posts */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div className="post-list" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {filteredPosts.map(post => (
-              <div key={post.id} style={{ 
+              <div key={post.id} className="post-card" style={{ 
                 background: 'var(--card)', 
                 borderRadius: 12, 
                 boxShadow: '0 1px 4px rgba(0,0,0,0.04)', 

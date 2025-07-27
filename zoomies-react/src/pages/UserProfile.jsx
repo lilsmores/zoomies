@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const USER_DATA = {
   name: 'Lianne Graham',
   username: '@liannagraham',
-  avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=center',
+  avatar: 'https://picsum.photos/100/100?random=2',
   coverPhoto: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=300&fit=crop&crop=center',
   bio: 'Passionate animal advocate and sanctuary supporter. Making the world better for all creatures, one donation at a time! 🐾',
   location: 'San Francisco, CA',

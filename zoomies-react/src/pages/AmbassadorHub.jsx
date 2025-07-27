@@ -10,15 +10,15 @@ const ANIMALS = {
     coverImg: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=200&fit=crop&crop=center',
     donation: { raised: 815, goal: 2000 },
     featured: true,
-    story: 'Stompy loves to climb and explore!',
+    story: 'Stompy loves headbutts and to climb and explore!',
     followers: 1247
   },
   luna: {
     name: 'Luna the Cow',
     species: 'Cow',
     sanctuary: 'Gentle Barn',
-    profileImg: 'https://images.unsplash.com/photo-1518715308788-3005759c61d4?w=100&h=100&fit=crop&crop=center',
-    coverImg: 'https://images.unsplash.com/photo-1518715308788-3005759c61d4?w=400&h=200&fit=crop&crop=center',
+    profileImg: 'https://picsum.photos/100/100?random=1',
+    coverImg: 'https://picsum.photos/400/200?random=1',
     donation: { raised: 1200, goal: 2500 },
     featured: true,
     story: 'Luna is the gentlest soul you\'ll ever meet.',
@@ -91,16 +91,16 @@ export default function AmbassadorHub() {
     <div className="ambassador-hub" style={{ background: 'var(--background)', minHeight: '100vh' }}>
       {/* Hero Section */}
       <div style={{ 
-        background: 'linear-gradient(135deg, var(--primary), var(--pink))',
+        background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
         padding: '24px 32px',
         textAlign: 'center',
-        color: '#fff'
+        color: 'var(--white)'
       }}>
         <h1 style={{ fontFamily: 'Calistoga, serif', fontWeight: 300, fontSize: 36, marginBottom: 8 }}>
           Meet Our Ambassador Animals
         </h1>
-        <p style={{ fontSize: 16, opacity: 0.9, maxWidth: 600, margin: '0 auto' }}>
-          Discover amazing animals from sanctuaries around the world. Each one has a unique story and needs your support!
+        <p style={{ fontSize: 18, opacity: 0.9, marginBottom: 24 }}>
+          Support these amazing animals and help them thrive in their sanctuaries.
         </p>
       </div>
 
@@ -156,7 +156,7 @@ export default function AmbassadorHub() {
               onChange={(e) => setSearchTerm(e.target.value)}
               style={{
                 width: '100%',
-                padding: '2px 12px 2px 36px',
+                padding: '7px 12px 7px 36px',
                 fontSize: 14,
                 border: '1.5px solid var(--border)',
                 borderRadius: 8,

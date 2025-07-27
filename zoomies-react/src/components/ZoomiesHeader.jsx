@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import logoPink from '../assets/LogoPink.png';
+import logoBlack from '../assets/LogoBlack.png';
 import logoWhite from '../assets/LogoWhite.png';
 
 export default function ZoomiesHeader() {
@@ -42,11 +42,10 @@ export default function ZoomiesHeader() {
         padding: '0.5rem 2rem', background: 'var(--card, #fff)', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', position: 'sticky', top: 0, zIndex: 100
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-          <img src={isDark ? logoWhite : logoPink} alt="Zoomies Logo" style={{ 
+          <img src={isDark ? logoWhite : logoBlack} alt="Zoomies Logo" style={{ 
             width: 80, 
             height: 86, 
-            objectFit: 'cover',
-            ...(isDark && { borderRadius: 10, boxShadow: '0 1px 4px rgba(0,0,0,0.06)' })
+            objectFit: 'cover'
           }} />
           <span style={{ fontFamily: 'Calistoga, serif', fontSize: 25, color: 'var(--primary, #fc97ca)', letterSpacing: 1 }}>Zoomies</span>
           <nav className="desktop-nav" style={{ display: 'flex', gap: 24, fontSize: 18 }}>
@@ -61,7 +60,18 @@ export default function ZoomiesHeader() {
           <button type="submit" style={{ background: 'none', border: 'none', padding: '0 1rem', cursor: 'pointer', color: 'var(--primary, #fc97ca)', fontSize: 16 }}></button>
         </form>
         <div className="desktop-actions" style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <button onClick={toggleTheme} className="button" style={{ border: 'none', borderRadius: 20, padding: '0.5rem 1rem', fontSize: 18, cursor: 'pointer', marginRight: 8 }} title="Toggle theme">
+          <button onClick={toggleTheme} className="button" style={{ 
+            background: 'linear-gradient(135deg, var(--primary) 0%, var(--light-pink) 100%)', 
+            color: '#fff', 
+            border: 'none', 
+            borderRadius: 20, 
+            padding: '0.5rem 1rem', 
+            fontSize: 18, 
+            cursor: 'pointer', 
+            marginRight: 8,
+            boxShadow: '0 2px 8px rgba(255, 107, 107, 0.2)',
+            transition: 'all 0.2s'
+          }} title="Toggle theme">
             {theme === 'light' ? '🌙' : '☀️'}
           </button>
           {user ? (
@@ -74,8 +84,30 @@ export default function ZoomiesHeader() {
             </div>
           ) : (
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={handleUserLogin} className="button" style={{ background: isDark ? 'var(--accent)' : 'var(--pink)', color: isDark ? 'var(--text)' : '#fff', border: 'none', borderRadius: 20, padding: '0.5rem 1rem', fontWeight: 600, fontSize: 14, cursor: 'pointer' }}>User</button>
-              <button onClick={handleSanctuaryLogin} className="button" style={{ background: isDark ? 'var(--accent)' : 'var(--pink)', color: isDark ? 'var(--text)' : '#fff', border: 'none', borderRadius: 20, padding: '0.5rem 1rem', fontWeight: 600, fontSize: 14, cursor: 'pointer' }}>Sanctuary</button>
+              <button onClick={handleUserLogin} className="button" style={{ 
+                background: 'linear-gradient(135deg, var(--primary) 0%, var(--light-pink) 100%)', 
+                color: '#fff', 
+                border: 'none', 
+                borderRadius: 20, 
+                padding: '0.5rem 1rem', 
+                fontWeight: 600, 
+                fontSize: 14, 
+                cursor: 'pointer',
+                boxShadow: '0 2px 8px rgba(255, 107, 107, 0.2)',
+                transition: 'all 0.2s'
+              }}>User</button>
+              <button onClick={handleSanctuaryLogin} className="button" style={{ 
+                background: 'linear-gradient(135deg, var(--primary) 0%, var(--light-pink) 100%)', 
+                color: '#fff', 
+                border: 'none', 
+                borderRadius: 20, 
+                padding: '0.5rem 1rem', 
+                fontWeight: 600, 
+                fontSize: 14, 
+                cursor: 'pointer',
+                boxShadow: '0 2px 8px rgba(255, 107, 107, 0.2)',
+                transition: 'all 0.2s'
+              }}>Sanctuary</button>
             </div>
           )}
         </div>
@@ -276,14 +308,16 @@ export default function ZoomiesHeader() {
                   className="button" 
                   style={{ 
                     width: '100%',
-                    background: 'var(--pink)', 
+                    background: 'linear-gradient(135deg, var(--primary) 0%, var(--light-pink) 100%)', 
                     color: '#fff', 
                     border: 'none', 
                     borderRadius: 12, 
                     padding: '0.75rem', 
                     fontWeight: 600, 
                     fontSize: 16, 
-                    cursor: 'pointer' 
+                    cursor: 'pointer',
+                    boxShadow: '0 2px 8px rgba(255, 107, 107, 0.2)',
+                    transition: 'all 0.2s'
                   }}
                 >
                   👤 Login as User
@@ -293,14 +327,16 @@ export default function ZoomiesHeader() {
                   className="button" 
                   style={{ 
                     width: '100%',
-                    background: 'var(--pink)', 
+                    background: 'linear-gradient(135deg, var(--primary) 0%, var(--light-pink) 100%)', 
                     color: '#fff', 
                     border: 'none', 
                     borderRadius: 12, 
                     padding: '0.75rem', 
                     fontWeight: 600, 
                     fontSize: 16, 
-                    cursor: 'pointer' 
+                    cursor: 'pointer',
+                    boxShadow: '0 2px 8px rgba(255, 107, 107, 0.2)',
+                    transition: 'all 0.2s'
                   }}
                 >
                   🏠 Login as Sanctuary
@@ -322,8 +358,10 @@ export default function ZoomiesHeader() {
                 fontSize: 16, 
                 cursor: 'pointer',
                 marginBottom: 16,
-                background: 'var(--primary)',
-                color: '#fff'
+                background: 'linear-gradient(135deg, var(--primary) 0%, var(--light-pink) 100%)',
+                color: '#fff',
+                boxShadow: '0 2px 8px rgba(255, 107, 107, 0.2)',
+                transition: 'all 0.2s'
               }} 
               title="Toggle theme"
             >

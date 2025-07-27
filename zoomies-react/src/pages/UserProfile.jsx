@@ -88,7 +88,7 @@ export default function UserProfile() {
     const percentage = (current / max) * 100;
     return (
       <div style={{ width: '100%', height: 8, background: 'var(--gray)', borderRadius: 4, overflow: 'hidden' }}>
-        <div style={{ width: `${percentage}%`, height: '100%', background: 'linear-gradient(90deg, var(--primary), var(--pink))', borderRadius: 4 }} />
+        <div style={{ width: `${percentage}%`, height: '100%', background: 'linear-gradient(90deg, var(--primary), var(--secondary))', borderRadius: 4 }} />
       </div>
     );
   };
@@ -479,7 +479,7 @@ export default function UserProfile() {
             <h3 style={{ margin: '0 0 16px 0', fontSize: 20 }}>Quick Actions</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <Link to="/ambassador-hub" className="button" style={{ textAlign: 'center', textDecoration: 'none' }}>
-                �� Support an Animal
+                🐾 Support an Animal
               </Link>
               <Link to="/community" className="button" style={{ textAlign: 'center', textDecoration: 'none' }}>
                 👥 Join Community

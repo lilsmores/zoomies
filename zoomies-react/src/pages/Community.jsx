@@ -112,7 +112,7 @@ export default function Community() {
               top: '50%',
               transform: 'translateY(-50%)',
               fontSize: 16,
-              color: 'var(--text)',
+              color: 'var(--text-secondary)',
               opacity: 0.6
             }}>
               🔍
@@ -128,8 +128,8 @@ export default function Community() {
               className="button" 
               style={{ 
                 justifyContent: 'flex-start', 
-                background: selectedSection === 'all' ? 'var(--primary)' : (isDark ? 'var(--background)' : 'transparent'),
-                color: selectedSection === 'all' ? 'var(--background)' : 'var(--text)',
+                background: selectedSection === 'all' ? 'var(--primary)' : 'transparent',
+                color: selectedSection === 'all' ? 'var(--white)' : 'var(--text)',
                 borderRadius: 8,
                 padding: '12px 16px',
                 fontSize: 16,
@@ -143,7 +143,7 @@ export default function Community() {
               className="button" 
               style={{ 
                 justifyContent: 'flex-start', 
-                background: isDark ? 'var(--background)' : 'transparent',
+                background: 'transparent',
                 color: 'var(--text)',
                 borderRadius: 8,
                 padding: '12px 16px',
@@ -157,7 +157,7 @@ export default function Community() {
               className="button" 
               style={{ 
                 justifyContent: 'flex-start', 
-                background: isDark ? 'var(--background)' : 'transparent',
+                background: 'transparent',
                 color: 'var(--text)',
                 borderRadius: 8,
                 padding: '12px 16px',
@@ -180,7 +180,7 @@ export default function Community() {
                 className="button" 
                 style={{ 
                   justifyContent: 'flex-start', 
-                  background: isDark ? 'var(--background)' : 'transparent',
+                  background: 'transparent',
                   color: 'var(--text)',
                   borderRadius: 8,
                   padding: '8px 12px',
@@ -191,7 +191,7 @@ export default function Community() {
                 <span style={{ fontSize: 16, marginRight: 8 }}>{community.avatar}</span>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                   <span style={{ fontWeight: 600 }}>{community.name}</span>
-                  <span style={{ fontSize: 12, opacity: 0.7 }}>{community.members} members</span>
+                  <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{community.members} members</span>
                 </div>
               </button>
             ))}

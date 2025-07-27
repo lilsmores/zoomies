@@ -11,26 +11,39 @@ body {
 }
 
 :root {
-  --background: #F8F6FF;
-  --card: #FFFFFF;
-  --primary: #E6B6FF;
+  --background: #f5f5f5;
+  --card: #f8f9fa;
+  --primary: #FF6B6B;
+  --secondary: #FF8E8E;
+  --light-pink: #FF9EC4;
+  --purple: #E6B6FF;
+  --light-purple: #D4A5F7;
+  --text: #333333;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --text-dark: #18171C;
+  --border: #e0e0e0;
+  --border-light: #ddd;
+  --success: #4CAF50;
+  --error: #f44336;
+  --warning: #FF4444;
+  --white: #FFFFFF;
+  --black: #000000;
+  --gray: #f0f0f0;
+  --gray-light: #F8F6FF;
   --accent: #B6E6FF;
-  --text: #18171C;
-  --pink: #FFB3E6;
-  --gray: #E0E0E0;
-  --gray-light: #E0E0E0;
-  --border: #E6B6FF;
+  --pink: #FF9EC4;
 }
 [data-theme='dark'] {
   --background: #18171C;
   --card: #232129;
-  --primary: #FFB3E6;
+  --primary: #FF8E8E;
   --accent: #B6E6FF;
   --text: #F8F6FF;
-  --pink: #FFB3E6;
+  --pink: #FF9EC4;
   --gray: #232129;
   --gray-light: #3A3A3A;
-  --border: #FFB3E6;
+  --border: #FF8E8E;
 }
 body {
   background: var(--background);
@@ -51,28 +64,28 @@ a:hover {
   color: var(--accent);
 }
 .button {
-  background: linear-gradient(90deg, var(--primary), var(--pink));
+  background: linear-gradient(135deg, var(--primary) 0%, var(--light-pink) 100%);
   color: var(--text);
   border: none;
   border-radius: 20px;
   padding: 0.5rem 1.25rem;
   font-weight: 600;
   font-size: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.2);
   cursor: pointer;
   transition: background 0.2s, box-shadow 0.2s, color 0.2s;
 }
 .button:hover, .button:focus {
-  background: linear-gradient(90deg, var(--pink), var(--primary));
+  background: linear-gradient(315deg, var(--light-pink) 0%, var(--primary) 100%);
   color: var(--background);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 16px rgba(255, 107, 107, 0.3);
 }
 [data-theme='dark'] .button {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--pink) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--light-pink) 100%);
   color: var(--text);
 }
 [data-theme='dark'] .button:hover, [data-theme='dark'] .button:focus {
-  background: linear-gradient(315deg, var(--pink) 0%, var(--accent) 100%);
+  background: linear-gradient(315deg, var(--light-pink) 0%, var(--primary) 100%);
   color: var(--background);
 }
 

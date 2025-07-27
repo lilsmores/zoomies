@@ -97,49 +97,50 @@ export default function Premium() {
         </h1>
         <p style={{ 
           fontSize: '1.2rem', 
-          color: 'var(--text)', 
-          opacity: 0.8,
-          marginBottom: '2rem'
+          color: 'var(--text-secondary)', 
+          marginBottom: '2rem' 
         }}>
-          Unlock powerful features to help animals and grow your impact
+          Support animal sanctuaries and join our community with the perfect plan for you.
         </p>
-
+        
         {/* User Type Toggle */}
         <div className="user-type-toggle" style={{ 
           display: 'flex', 
           justifyContent: 'center', 
-          gap: '1rem',
-          marginBottom: '2rem'
+          gap: '1rem', 
+          marginBottom: '2rem' 
         }}>
-          <button
+          <button 
+            style={{ 
+              padding: '0.75rem 1.5rem',
+              border: '2px solid var(--primary)',
+              background: selectedUserType === 'sanctuaries' ? 'var(--primary)' : 'transparent',
+              color: selectedUserType === 'sanctuaries' ? 'var(--white)' : 'var(--primary)',
+              borderRadius: '25px',
+              cursor: 'pointer',
+              fontSize: '1rem',
+              fontWeight: '600',
+              transition: 'all 0.2s'
+            }}
             onClick={() => setSelectedUserType('sanctuaries')}
-            style={{
-              padding: '0.75rem 1.5rem',
-              borderRadius: '25px',
-              border: 'none',
-              background: selectedUserType === 'sanctuaries' ? 'var(--primary)' : 'var(--gray)',
-              color: selectedUserType === 'sanctuaries' ? '#fff' : 'var(--text)',
-              fontWeight: 600,
-              cursor: 'pointer',
-              fontSize: '1rem'
-            }}
           >
-            🏠 For Sanctuaries
+            🏠 Sanctuaries
           </button>
-          <button
-            onClick={() => setSelectedUserType('community')}
-            style={{
+          <button 
+            style={{ 
               padding: '0.75rem 1.5rem',
+              border: '2px solid var(--primary)',
+              background: selectedUserType === 'community' ? 'var(--primary)' : 'transparent',
+              color: selectedUserType === 'community' ? 'var(--white)' : 'var(--primary)',
               borderRadius: '25px',
-              border: 'none',
-              background: selectedUserType === 'community' ? 'var(--primary)' : 'var(--gray)',
-              color: selectedUserType === 'community' ? '#fff' : 'var(--text)',
-              fontWeight: 600,
               cursor: 'pointer',
-              fontSize: '1rem'
+              fontSize: '1rem',
+              fontWeight: '600',
+              transition: 'all 0.2s'
             }}
+            onClick={() => setSelectedUserType('community')}
           >
-            👥 For Community
+            👥 Community
           </button>
         </div>
       </div>

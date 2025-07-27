@@ -14,7 +14,7 @@ import Premium from './pages/Premium';
 function App() {
   return (
     <Router>
-      <div style={{ minHeight: '100vh', background: 'var(--background, #F8F6FF)', color: 'var(--text, #18171C)' }}>
+      <div style={{ minHeight: '100vh', background: 'var(--background)', color: 'var(--text)' }}>
         <ZoomiesHeader />
         <Routes>
           <Route path="/" element={<Home />} />

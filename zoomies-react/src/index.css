@@ -613,6 +613,11 @@ a:hover {
     font-size: 14px !important;
     white-space: nowrap !important;
   }
+  .sanctuary-dashboard .tabs button:not(:disabled):not([aria-selected="true"]):hover {
+    background: linear-gradient(90deg, var(--accent), var(--primary));
+    color: #fff;
+    transition: background 0.2s, color 0.2s;
+  }
   .sanctuary-dashboard .tab-content {
     grid-template-columns: 1fr !important;
     gap: 16px !important;

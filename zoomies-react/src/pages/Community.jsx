@@ -128,8 +128,8 @@ export default function Community() {
               className="button" 
               style={{ 
                 justifyContent: 'flex-start', 
-                background: selectedSection === 'all' ? 'var(--primary)' : 'transparent',
-                color: selectedSection === 'all' ? 'var(--white)' : 'var(--text)',
+                background: selectedSection === 'all' ? 'linear-gradient(90deg, var(--accent), var(--primary))' : 'transparent',
+                color: selectedSection === 'all' ? '#fff' : 'var(--text)',
                 borderRadius: 8,
                 padding: '12px 16px',
                 fontSize: 16,
@@ -203,20 +203,20 @@ export default function Community() {
           <h3 style={{ fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1 }}>Topics</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {TOPICS.map((topic, index) => (
-                              <button 
-                  key={index}
-                  className="button" 
-                  style={{ 
-                    justifyContent: 'flex-start', 
-                    background: selectedSection === topic.name ? 'var(--primary)' : (isDark ? 'var(--background)' : 'transparent'),
-                    color: selectedSection === topic.name ? 'var(--background)' : 'var(--text)',
-                    borderRadius: 8,
-                    padding: '8px 12px',
-                    fontSize: 14,
-                    fontWeight: 500
-                  }}
-                  onClick={() => setSelectedSection(topic.name)}
-                >
+              <button 
+                key={index}
+                className="button" 
+                style={{ 
+                  justifyContent: 'flex-start', 
+                  background: selectedSection === topic.name ? 'linear-gradient(90deg, var(--accent), var(--primary))' : (isDark ? 'var(--background)' : 'transparent'),
+                  color: selectedSection === topic.name ? '#fff' : 'var(--text)',
+                  borderRadius: 8,
+                  padding: '8px 12px',
+                  fontSize: 14,
+                  fontWeight: 500
+                }}
+                onClick={() => setSelectedSection(topic.name)}
+              >
                 <span style={{ fontSize: 16, marginRight: 8 }}>{topic.icon}</span>
                 {topic.name}
               </button>

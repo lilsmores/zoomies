@@ -343,7 +343,11 @@ export default function AmbassadorHub() {
                   padding: '8px 16px', 
                   fontSize: 14,
                   flex: 1,
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  background: 'linear-gradient(90deg, var(--accent), var(--primary))',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: 20
                 }}>
                   View Profile
                 </Link>

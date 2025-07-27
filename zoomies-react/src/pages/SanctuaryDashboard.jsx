@@ -123,7 +123,20 @@ export default function SanctuaryDashboard() {
               borderRadius: '8px 8px 0 0',
               cursor: 'pointer',
               fontWeight: 500,
-              fontSize: 16
+              fontSize: 16,
+              transition: 'background 0.2s, color 0.2s'
+            }}
+            onMouseEnter={e => {
+              if (activeTab !== tab.id) {
+                e.currentTarget.style.background = 'linear-gradient(90deg, var(--accent), var(--primary))';
+                e.currentTarget.style.color = '#fff';
+              }
+            }}
+            onMouseLeave={e => {
+              if (activeTab !== tab.id) {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.color = 'var(--text)';
+              }
             }}
           >
             {tab.icon} {tab.label}
